@@ -708,12 +708,11 @@ void StartBlink01(void *argument)
 	/* Infinite loop */
 	for (;;) {
 		osDelay(10);
-		i ^= 1;
 		HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
 
 
 		AccGyr.ACC_GetAxes(accelerometer);
-		AccGyr.GYRO_GetAxes(gyroscope);
+
 	}
   /* USER CODE END StartBlink01 */
 }
