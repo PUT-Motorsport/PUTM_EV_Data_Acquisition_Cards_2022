@@ -207,7 +207,12 @@ public:
 			//digitalWrite(cs_pin, LOW);
 
 			/* Write Reg Address */
-			HAL_SPI_Transmit(&hspi1, &RegisterAddr, nBytesToWrite, 100);
+			uint8_t data[2];
+			data[0] = RegisterAddr;  // multibyte write
+			data[1] = *pBuffer;
+
+//			HAL_SPI_Transmit(&hspi1, &RegisterAddr, 1, 100);
+			HAL_SPI_Transmit(&hspi1, data, 2, 100);
 
 //			HAL_SPI_Receive(&hspi1, pBuffer, nBytesToWrite, 100);
 

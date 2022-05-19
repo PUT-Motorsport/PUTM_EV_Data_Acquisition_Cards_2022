@@ -683,9 +683,9 @@ void StartBlink01(void *argument) {
 	uint8_t r = 0;
 	  AccGyr.begin();
 	  AccGyr.ACC_Enable();
-
-	  ism_write(0x10U, 0b01110000);
-	  ism_write(0x14U, 0b1100000);
+//
+//	  ism_write(0x10U, 0b01110000);
+//	  ism_write(0x14U, 0b1100000);
 
 	  AccGyr.GYRO_Enable();
 
@@ -699,10 +699,10 @@ void StartBlink01(void *argument) {
 	  AccGyr.GYRO_SetFullScale(GYR_FS);
 	  ism_read(0x11, 1, &r);
 //	  // Configure FIFO BDR for acc and gyro
-//	  AccGyr.FIFO_ACC_Set_BDR(SENSOR_ODR);
-//	  AccGyr.FIFO_GYRO_Set_BDR(SENSOR_ODR);
+	  AccGyr.FIFO_ACC_Set_BDR(SENSOR_ODR);
+	  AccGyr.FIFO_GYRO_Set_BDR(SENSOR_ODR);
 //	  // Set FIFO in Continuous mode
-//	  AccGyr.FIFO_Set_Mode(ISM330DHCX_STREAM_MODE);
+	  AccGyr.FIFO_Set_Mode(ISM330DHCX_STREAM_MODE);
 	/* Infinite loop */
 	for (;;) {
 		osDelay(1);
