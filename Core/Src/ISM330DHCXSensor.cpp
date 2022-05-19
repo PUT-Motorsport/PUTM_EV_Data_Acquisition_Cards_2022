@@ -111,10 +111,12 @@ ISM330DHCXStatusTypeDef ISM330DHCXSensor::end() {
 	}
 
 	/* Reset CS configuration */
-	if (&hspi1 != NULL) {
-		// Configure CS pin
-		HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
+
+	if (HAL_SPI_Init(&hspi1) != HAL_OK) {
+		Error_Handler();
 	}
+	// Configure CS pin
+	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
 
 	return ISM330DHCX_OK;
 }

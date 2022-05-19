@@ -166,30 +166,15 @@ public:
 	 */
 	uint8_t IO_Read(uint8_t *pBuffer, uint8_t RegisterAddr,
 			uint16_t nBytesToRead) {
-		if (&hspi1 != NULL) {
-//
-//			dev_spi->beginTransaction(
-//					SPISettings(spi_speed, MSBFIRST, SPI_MODE3));
-			HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
 
-//digitalWrite(cs_pin, LOW);
-			uint8_t msg = RegisterAddr | 0x80;
-			/* Write Reg Address */
-			HAL_SPI_Transmit(&hspi1, &msg, 1, 100);
+		HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
+		uint8_t msg = RegisterAddr | 0x80;
+		/* Write Reg Address */
+		HAL_SPI_Transmit(&hspi1, &msg, 1, 100);
+		HAL_SPI_Receive(&hspi1, pBuffer, nBytesToRead, 100);
+		HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
 
-//			dev_spi->transfer(RegisterAddr | 0x80);
-			/* Read the data */
-//			for (uint16_t i = 0; i < NumByteToRead; i++) {
-//				*(pBuffer + i) = dev_spi->transfer(0x00);
-//			}
-			HAL_SPI_Receive(&hspi1, pBuffer, nBytesToRead, 100);
-
-			HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
-
-			return 0;
-		}
-
-		return 1;
+		return 0;
 	}
 
 	/**
@@ -201,36 +186,21 @@ public:
 	 */
 	uint8_t IO_Write(uint8_t *pBuffer, uint8_t RegisterAddr,
 			uint16_t nBytesToWrite) {
-		if (&hspi1!=NULL) {
-			HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
 
-			//digitalWrite(cs_pin, LOW);
+		HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
+		/* Write Reg Address */
+		uint8_t data[2];
+		data[0] = RegisterAddr;  // multibyte write
+		data[1] = *pBuffer;
 
-			/* Write Reg Address */
-			uint8_t data[2];
-			data[0] = RegisterAddr;  // multibyte write
-			data[1] = *pBuffer;
+		HAL_SPI_Transmit(&hspi1, data, 2, 100);
+		HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
 
-//			HAL_SPI_Transmit(&hspi1, &RegisterAddr, 1, 100);
-			HAL_SPI_Transmit(&hspi1, data, 2, 100);
-
-//			HAL_SPI_Receive(&hspi1, pBuffer, nBytesToWrite, 100);
-
-			HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
-
-			return 0;
-		}
-
-		return 1;
+		return 0;
 	}
-
 
 private:
 	ISM330DHCXStatusTypeDef Init();
-	/*Connection*/
-//	TwoWire *dev_i2c;
-//	SPIClass *dev_spi;
-//	SPI_HandleTypeDef hspi;
 	/*Configuration*/
 	uint8_t address;
 	int cs_pin;

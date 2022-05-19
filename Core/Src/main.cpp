@@ -79,7 +79,7 @@ int32_t gyroscope[3];
 char buff[FLASH_BUFF_LEN];
 uint8_t i = 10;
 uint32_t pos = 0;
-uint8_t rec[2]= {5};
+uint8_t rec[2] = { 5 };
 
 CAN_FilterTypeDef filter;
 HAL_StatusTypeDef error_can_status;
@@ -530,8 +530,7 @@ static void MX_GPIO_Init(void) {
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOB,
-			LED0_Pin | LED1_Pin | LED2_Pin | LED3_Pin | GPIO_PIN_7,
-			GPIO_PIN_RESET);
+	LED0_Pin | LED1_Pin | LED2_Pin | LED3_Pin | GPIO_PIN_7, GPIO_PIN_RESET);
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8,
@@ -555,7 +554,7 @@ static void MX_GPIO_Init(void) {
 	/*Configure GPIO pins : LED0_Pin LED1_Pin LED2_Pin LED3_Pin
 	 PB7 */
 	GPIO_InitStruct.Pin =
-			LED0_Pin | LED1_Pin | LED2_Pin | LED3_Pin | GPIO_PIN_7;
+	LED0_Pin | LED1_Pin | LED2_Pin | LED3_Pin | GPIO_PIN_7;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -639,15 +638,14 @@ void ism_write(uint8_t address, uint8_t value) {
 	data[1] = value;
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET); // pull the cs pin low
 	HAL_SPI_Transmit(&hspi1, data, 2, 100);  // write data to register
-	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);  // pull the cs pin high
+	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET); // pull the cs pin high
 }
-void ism_read(uint8_t address, uint8_t nBytesToRead, uint8_t *buffer)
-{
+void ism_read(uint8_t address, uint8_t nBytesToRead, uint8_t *buffer) {
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET); // pull the cs pin low
 	uint8_t msg = address | 0x80;
 	HAL_SPI_Transmit(&hspi1, &msg, 1, 100);  // write data to register
-	HAL_SPI_Receive (&hspi1, buffer, nBytesToRead , 100);
-	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);  // pull the cs pin high
+	HAL_SPI_Receive(&hspi1, buffer, nBytesToRead, 100);
+	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET); // pull the cs pin high
 }
 /* USER CODE END 4 */
 
@@ -680,34 +678,26 @@ void StartBlink01(void *argument) {
 	/* USER CODE BEGIN StartBlink01 */
 	HAL_SPI_Init(&hspi1);
 	ISM330DHCXSensor AccGyr;
-	uint8_t r = 0;
-	  AccGyr.begin();
-	  AccGyr.ACC_Enable();
-//
+	AccGyr.begin();
+	AccGyr.ACC_Enable();
+
 //	  ism_write(0x10U, 0b01110000);
 //	  ism_write(0x14U, 0b1100000);
-
-	  AccGyr.GYRO_Enable();
-
-	  // Configure ODR and FS of the acc and gyro
-	  AccGyr.ACC_SetOutputDataRate(SENSOR_ODR);
-	  ism_read(0x10, 1, &r);
-	  AccGyr.ACC_SetFullScale(ACC_FS);
-	  ism_read(0x10, 1, &r);
-	  AccGyr.GYRO_SetOutputDataRate(SENSOR_ODR);
-	  ism_read(0x11, 1, &r);
-	  AccGyr.GYRO_SetFullScale(GYR_FS);
-	  ism_read(0x11, 1, &r);
+	AccGyr.GYRO_Enable();
+	// Configure ODR and FS of the acc and gyro
+	AccGyr.ACC_SetOutputDataRate(SENSOR_ODR);
+	AccGyr.ACC_SetFullScale(ACC_FS);
+	AccGyr.GYRO_SetOutputDataRate(SENSOR_ODR);
+	AccGyr.GYRO_SetFullScale(GYR_FS);
 //	  // Configure FIFO BDR for acc and gyro
-	  AccGyr.FIFO_ACC_Set_BDR(SENSOR_ODR);
-	  AccGyr.FIFO_GYRO_Set_BDR(SENSOR_ODR);
+	AccGyr.FIFO_ACC_Set_BDR(SENSOR_ODR);
+	AccGyr.FIFO_GYRO_Set_BDR(SENSOR_ODR);
 //	  // Set FIFO in Continuous mode
-	  AccGyr.FIFO_Set_Mode(ISM330DHCX_STREAM_MODE);
+	AccGyr.FIFO_Set_Mode(ISM330DHCX_STREAM_MODE);
 	/* Infinite loop */
 	for (;;) {
 		osDelay(1);
 		HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
-
 
 		AccGyr.ACC_GetAxes(accelerometer);
 		AccGyr.GYRO_GetAxes(gyroscope);
