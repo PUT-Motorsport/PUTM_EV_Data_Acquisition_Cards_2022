@@ -2,7 +2,6 @@
 #include "ISM330DHCXSensor.hpp"
 
 /* Class Implementations ---------------------------------------------------------------------*/
-extern SPI_HandleTypeDef hspi1;
 
 /** Constructor SPI
  *  @param spi object
@@ -84,11 +83,11 @@ ISM330DHCXStatusTypeDef ISM330DHCXSensor::Init() {
  * @retval 0 in case of success, an error code otherwise
  */
 ISM330DHCXStatusTypeDef ISM330DHCXSensor::begin() {
-	if (&hspi1 != NULL) {
-		// Configure CS pin
-		HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
-
+	if (HAL_SPI_Init(&hspi1) != HAL_OK) {
+		Error_Handler();
 	}
+	// Configure CS pin
+	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
 
 	if (Init() != ISM330DHCX_OK) {
 		return ISM330DHCX_ERROR;
