@@ -5,10 +5,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/can.c \
 ../Core/Src/freertos.c \
 ../Core/Src/ism330dhcx_reg.c \
-../Core/Src/main.c \
 ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Src/stm32l4xx_hal_timebase_tim.c \
 ../Core/Src/stm32l4xx_it.c \
@@ -18,13 +16,14 @@ C_SRCS += \
 
 CPP_SRCS += \
 ../Core/Src/ISM330DHCXSensor.cpp \
-../Core/Src/main.cpp 
+../Core/Src/can_functions.cpp \
+../Core/Src/ism_task.cpp \
+../Core/Src/main.cpp \
+../Core/Src/meansure_task.cpp 
 
 C_DEPS += \
-./Core/Src/can.d \
 ./Core/Src/freertos.d \
 ./Core/Src/ism330dhcx_reg.d \
-./Core/Src/main.d \
 ./Core/Src/stm32l4xx_hal_msp.d \
 ./Core/Src/stm32l4xx_hal_timebase_tim.d \
 ./Core/Src/stm32l4xx_it.d \
@@ -34,10 +33,12 @@ C_DEPS += \
 
 OBJS += \
 ./Core/Src/ISM330DHCXSensor.o \
-./Core/Src/can.o \
+./Core/Src/can_functions.o \
 ./Core/Src/freertos.o \
 ./Core/Src/ism330dhcx_reg.o \
+./Core/Src/ism_task.o \
 ./Core/Src/main.o \
+./Core/Src/meansure_task.o \
 ./Core/Src/stm32l4xx_hal_msp.o \
 ./Core/Src/stm32l4xx_hal_timebase_tim.o \
 ./Core/Src/stm32l4xx_it.o \
@@ -47,7 +48,10 @@ OBJS += \
 
 CPP_DEPS += \
 ./Core/Src/ISM330DHCXSensor.d \
-./Core/Src/main.d 
+./Core/Src/can_functions.d \
+./Core/Src/ism_task.d \
+./Core/Src/main.d \
+./Core/Src/meansure_task.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -59,7 +63,7 @@ Core/Src/%.o: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/ISM330DHCXSensor.d ./Core/Src/ISM330DHCXSensor.o ./Core/Src/can.d ./Core/Src/can.o ./Core/Src/freertos.d ./Core/Src/freertos.o ./Core/Src/ism330dhcx_reg.d ./Core/Src/ism330dhcx_reg.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_timebase_tim.d ./Core/Src/stm32l4xx_hal_timebase_tim.o ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o
+	-$(RM) ./Core/Src/ISM330DHCXSensor.d ./Core/Src/ISM330DHCXSensor.o ./Core/Src/can_functions.d ./Core/Src/can_functions.o ./Core/Src/freertos.d ./Core/Src/freertos.o ./Core/Src/ism330dhcx_reg.d ./Core/Src/ism330dhcx_reg.o ./Core/Src/ism_task.d ./Core/Src/ism_task.o ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/meansure_task.d ./Core/Src/meansure_task.o ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_timebase_tim.d ./Core/Src/stm32l4xx_hal_timebase_tim.o ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o
 
 .PHONY: clean-Core-2f-Src
 

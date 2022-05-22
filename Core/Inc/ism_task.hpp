@@ -14,10 +14,8 @@
 #define MEASUREMENT_TIME_INTERVAL (1000.0f/SENSOR_ODR) // In ms
 #define FIFO_SAMPLE_THRESHOLD 199
 #define FLASH_BUFF_LEN 8192
-class ism_task {
-public:
-	void ism330_setup(void);
-	void ism330_setup(void);
-};
+
+void ism330_setup(void);
+void ism330_setup(void);
 
 #endif /* INC_ISM_TASK_HPP_ */

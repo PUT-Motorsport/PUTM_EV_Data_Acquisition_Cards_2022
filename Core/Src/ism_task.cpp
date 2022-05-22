@@ -7,8 +7,13 @@
 
 #include <ism_task.hpp>
 #include <ISM330DHCXSensor.hpp>
+#include <can_interface.hpp>
 
-	ISM330DHCXSensor AccGyr;
+
+ISM330DHCXSensor AccGyr;
+//uint32_t acceleration[3] = {0};
+//uint32_t angular_rate[3] = {0};
+
 void ism330_setup(void) {
 
 	AccGyr.begin();
@@ -26,7 +31,10 @@ void ism330_setup(void) {
 	AccGyr.FIFO_Set_Mode(ISM330DHCX_STREAM_MODE);
 }
 
-void ism330_read(void){
-	AccGyr.ACC_GetAxes(Acceleration);
-	AccGyr.GYRO_GetAxes(AngularRate);
+void ism330_read(int32_t *acceleration, int32_t *angular_rate) {
+	AccGyr.ACC_GetAxes(acceleration);
+	AccGyr.GYRO_GetAxes(angular_rate);
 }
+
+
+
