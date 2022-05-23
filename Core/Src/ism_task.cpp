@@ -7,8 +7,6 @@
 
 #include <ism_task.hpp>
 #include <ISM330DHCXSensor.hpp>
-#include <can_interface.hpp>
-
 
 ISM330DHCXSensor AccGyr;
 //uint32_t acceleration[3] = {0};

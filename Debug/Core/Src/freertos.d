@@ -45,7 +45,9 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
- C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h
+ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
+ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
+ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 
@@ -140,3 +142,7 @@ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HA
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:
 
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
+
+C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
+
+C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:

@@ -1,4 +1,4 @@
-Core/Src/can.o: ../Core/Src/can.c ../Core/Inc/can.h \
+Core/Src/can.o: ../Core/Src/can.c ../Core/Inc/can.h ../Core/Inc/main.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -35,10 +35,11 @@ Core/Src/can.o: ../Core/Src/can.c ../Core/Inc/can.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
- C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
- C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4p5xx.h
+ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h
 
 ../Core/Inc/can.h:
+
+../Core/Inc/main.h:
 
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 
@@ -113,5 +114,3 @@ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HA
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:
 
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
-
-C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4p5xx.h:
