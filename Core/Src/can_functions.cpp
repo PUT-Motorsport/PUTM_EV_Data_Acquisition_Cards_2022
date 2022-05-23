@@ -7,8 +7,7 @@
 
 #include "can_functions.hpp"
 #include <can_interface.hpp>
-#include "can.h"
-//extern CAN_HandleTypeDef hcan1;
+extern CAN_HandleTypeDef hcan1;
 
 void init_can_filter(CAN_FilterTypeDef sFilterConfig) {
 	sFilterConfig.FilterBank = 0;

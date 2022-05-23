@@ -59,8 +59,7 @@ Core/Src/can_functions.o: ../Core/Src/can_functions.cpp \
  ../Core/Inc/CanHeaders/PM08-CANBUS-SF.hpp \
  ../Core/Inc/CanHeaders/PM08-CANBUS-STEERING_WHEEL.hpp \
  ../Core/Inc/CanHeaders/PM08-CANBUS-TC.hpp \
- ../Core/Inc/CanHeaders/PM08-CANBUS-TELEMETRY.hpp ../Core/Inc/can.h \
- ../Core/Inc/main.h
+ ../Core/Inc/CanHeaders/PM08-CANBUS-TELEMETRY.hpp
 
 ../Core/Inc/can_functions.hpp:
 
@@ -187,7 +186,3 @@ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Pa
 ../Core/Inc/CanHeaders/PM08-CANBUS-TC.hpp:
 
 ../Core/Inc/CanHeaders/PM08-CANBUS-TELEMETRY.hpp:
-
-../Core/Inc/can.h:
-
-../Core/Inc/main.h:

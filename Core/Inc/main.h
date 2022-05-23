@@ -85,6 +85,7 @@ void Error_Handler(void);
 #define LED3_GPIO_Port GPIOB
 #define ISM_INT1_Pin GPIO_PIN_6
 #define ISM_INT1_GPIO_Port GPIOB
+void   MX_TIM3_Init(void);
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

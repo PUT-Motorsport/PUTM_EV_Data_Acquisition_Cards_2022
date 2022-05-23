@@ -47,10 +47,9 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/can.h ../Core/Inc/dma.h \
- ../Core/Inc/rtc.h ../Core/Inc/spi.h ../Core/Inc/gpio.h \
  ../Core/Inc/ISM330DHCXSensor.hpp ../Core/Inc/ism330dhcx_reg.h \
- ../Core/Inc/can_functions.hpp ../Core/Inc/meansure_task.hpp
+ ../Core/Inc/main.h ../Core/Inc/can_functions.hpp \
+ ../Core/Inc/meansure_task.hpp
 
 ../Core/Inc/main.h:
 
@@ -150,23 +149,11 @@ C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Pa
 
 C:/Users/molso/STM32Cube/Repository/STM32Cube_FW_L4_V1.17.1/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 
-../Core/Inc/adc.h:
-
-../Core/Inc/main.h:
-
-../Core/Inc/can.h:
-
-../Core/Inc/dma.h:
-
-../Core/Inc/rtc.h:
-
-../Core/Inc/spi.h:
-
-../Core/Inc/gpio.h:
-
 ../Core/Inc/ISM330DHCXSensor.hpp:
 
 ../Core/Inc/ism330dhcx_reg.h:
+
+../Core/Inc/main.h:
 
 ../Core/Inc/can_functions.hpp:
 
