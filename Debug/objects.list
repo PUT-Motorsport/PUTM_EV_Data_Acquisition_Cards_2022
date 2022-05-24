@@ -1,4 +1,5 @@
 "./Core/Src/ISM330DHCXSensor.o"
+"./Core/Src/adc_data.o"
 "./Core/Src/can_functions.o"
 "./Core/Src/freertos.o"
 "./Core/Src/ism330dhcx_reg.o"

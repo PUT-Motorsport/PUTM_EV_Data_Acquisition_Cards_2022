@@ -645,7 +645,7 @@ void StartBlink01(void *argument) {
 	/* Infinite loop */
 	for (;;) {
 
-		can_main_frame_send(adc_data[adc_channel::SUSP_R], adc_data[adc_channel::SUSP_L], braking_pressure_percent_calculation( adc_data[adc_channel::BRAKE_FRONT]), braking_pressure_percent_calculation( adc_data[adc_channel::BRAKE_BACK]));
+		can_main_frame_send(adc_data[Analog_channel::SUSP_R], adc_data[Analog_channel::SUSP_L], braking_pressure_percent_calculation( adc_data[Analog_channel::BRAKE_FRONT]), braking_pressure_percent_calculation( adc_data[Analog_channel::BRAKE_BACK]));
 		osDelay(10);
 	} /* USER CODE END StartBlink01 */
 }
