@@ -15,11 +15,9 @@ enum struct Analog_channel {
 extern ADC_HandleTypeDef hadc1;
 class adc_data {
 public:
-	std::array<uint16_t, 6> data { };
+	static std::array<uint16_t, 6> data;
 	adc_data();
 	uint16_t operator[](Analog_channel channel);
-	uint16_t braking_pressure_bar_calculation(uint16_t adc_value);
-	uint8_t braking_pressure_percent_calculation(uint16_t pressure_in_bar);
 
 };
 

@@ -90,7 +90,7 @@ void StartBlink01(void *argument);
 /* USER CODE BEGIN PFP */
 void ism_read(uint8_t address, uint8_t nBytesToRead, uint8_t *buffer);
 void ism_write(uint8_t address, uint8_t value);
-
+uint16_t adc[6]={0};
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -644,8 +644,14 @@ void StartBlink01(void *argument) {
 
 	/* Infinite loop */
 	for (;;) {
-
-		can_main_frame_send(adc_data[Analog_channel::SUSP_R], adc_data[Analog_channel::SUSP_L], braking_pressure_percent_calculation( adc_data[Analog_channel::BRAKE_FRONT]), braking_pressure_percent_calculation( adc_data[Analog_channel::BRAKE_BACK]));
+		adc[0] = adc_data[Analog_channel::SUSP_R];
+		adc[1] = adc_data[Analog_channel::SUSP_L];
+		adc[2] = adc_data[Analog_channel::BRAKE_FRONT];
+		adc[3] = adc_data[Analog_channel::BRAKE_BACK];
+		adc[4] = adc_data[Analog_channel::ANALOG_1];
+		adc[5] = adc_data[Analog_channel::ANALOG_2];
+//		can_main_frame_send(11 , 22, 33, 44);
+		can_main_frame_send(adc_data[Analog_channel::SUSP_R], adc_data[Analog_channel::SUSP_L], braking_pressure_percent_calculation(adc_data[Analog_channel::BRAKE_FRONT]), braking_pressure_percent_calculation( adc_data[Analog_channel::BRAKE_BACK]));
 		osDelay(10);
 	} /* USER CODE END StartBlink01 */
 }
