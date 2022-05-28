@@ -1,0 +1,182 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 17 25
+Title "Accelerometer and Gyroscope"
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:GND #PWR071
+U 1 1 61B6BFF6
+P 3500 4450
+F 0 "#PWR071" H 3500 4200 50  0001 C CNN
+F 1 "GND" H 3505 4277 50  0000 C CNN
+F 2 "" H 3500 4450 50  0001 C CNN
+F 3 "" H 3500 4450 50  0001 C CNN
+	1    3500 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR073
+U 1 1 61B6D070
+P 6300 4650
+F 0 "#PWR073" H 6300 4400 50  0001 C CNN
+F 1 "GND" H 6305 4477 50  0000 C CNN
+F 2 "" H 6300 4650 50  0001 C CNN
+F 3 "" H 6300 4650 50  0001 C CNN
+	1    6300 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 4550 6300 4550
+Wire Wire Line
+	6300 4550 6300 4650
+Wire Wire Line
+	6300 4550 6250 4550
+Connection ~ 6300 4550
+Wire Wire Line
+	5650 4050 5200 4050
+Wire Wire Line
+	5650 4150 5200 4150
+Wire Wire Line
+	5650 4250 5200 4250
+Text HLabel 5200 4050 0    50   Input ~ 0
+SPI_MOSI
+Text HLabel 5200 4150 0    50   Input ~ 0
+SPI_CLK
+Text HLabel 5200 4250 0    50   Input ~ 0
+SPI_CS
+Wire Wire Line
+	6850 3650 7050 3650
+Wire Wire Line
+	6850 3750 7050 3750
+Text HLabel 7050 3650 2    50   Output ~ 0
+INT1
+Text HLabel 7050 3750 2    50   Output ~ 0
+INT2
+$Comp
+L power:+3.3V #PWR070
+U 1 1 61BA6295
+P 3250 3400
+F 0 "#PWR070" H 3250 3250 50  0001 C CNN
+F 1 "+3.3V" H 3265 3573 50  0000 C CNN
+F 2 "" H 3250 3400 50  0001 C CNN
+F 3 "" H 3250 3400 50  0001 C CNN
+	1    3250 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Ferrite_Bead FB6
+U 1 1 61BAD506
+P 3250 3650
+F 0 "FB6" H 3387 3696 50  0000 L CNN
+F 1 "60R120MHz" H 3387 3605 50  0000 L CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 3180 3650 50  0001 C CNN
+F 3 "~" H 3250 3650 50  0001 C CNN
+	1    3250 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 3400 3250 3500
+Wire Wire Line
+	3250 3800 3250 4050
+Text Label 3900 4050 0    39   ~ 0
++3.3V_IMS
+Wire Wire Line
+	6350 3100 6300 3100
+Wire Wire Line
+	6250 3100 6250 3350
+Text Label 6350 2950 0    39   ~ 0
++3.3V_IMS
+Wire Wire Line
+	6350 3350 6350 3100
+Text HLabel 5200 3650 0    50   Input ~ 0
+SPI_MISO
+Wire Wire Line
+	5200 3650 5650 3650
+Wire Wire Line
+	5650 3750 4450 3750
+Wire Wire Line
+	4450 3750 4450 3850
+Wire Wire Line
+	5650 3850 4450 3850
+Connection ~ 4450 3850
+Wire Wire Line
+	4450 3850 4450 3950
+$Comp
+L power:GND #PWR072
+U 1 1 61C5260D
+P 4450 3950
+F 0 "#PWR072" H 4450 3700 50  0001 C CNN
+F 1 "GND" H 4455 3777 50  0000 C CNN
+F 2 "" H 4450 3950 50  0001 C CNN
+F 3 "" H 4450 3950 50  0001 C CNN
+	1    4450 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C27
+U 1 1 61C556BD
+P 3250 4200
+F 0 "C27" H 3365 4246 50  0000 L CNN
+F 1 "100nF" H 3365 4155 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3288 4050 50  0001 C CNN
+F 3 "~" H 3250 4200 50  0001 C CNN
+	1    3250 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C28
+U 1 1 61C55E3A
+P 3750 4200
+F 0 "C28" H 3865 4246 50  0000 L CNN
+F 1 "100nF" H 3865 4155 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3788 4050 50  0001 C CNN
+F 3 "~" H 3750 4200 50  0001 C CNN
+	1    3750 4200
+	1    0    0    -1  
+$EndComp
+Connection ~ 3250 4050
+Wire Wire Line
+	3250 4050 3750 4050
+Wire Wire Line
+	3750 4050 4200 4050
+Connection ~ 3750 4050
+Wire Wire Line
+	3750 4350 3750 4400
+Wire Wire Line
+	3750 4400 3500 4400
+Wire Wire Line
+	3250 4400 3250 4350
+Wire Wire Line
+	3500 4450 3500 4400
+Connection ~ 3500 4400
+Wire Wire Line
+	3500 4400 3250 4400
+Wire Wire Line
+	6300 3100 6300 2950
+Connection ~ 6300 3100
+Wire Wire Line
+	6300 3100 6250 3100
+Wire Wire Line
+	6300 2950 6650 2950
+$Comp
+L Sensor_Motionn:LSM6DS3 U17
+U 1 1 61D97EE5
+P 6250 3950
+F 0 "U17" H 6894 3996 50  0000 L CNN
+F 1 "IMS330DHCX" H 6894 3905 50  0000 L CNN
+F 2 "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y" H 5850 3250 50  0001 L CNN
+F 3 "www.st.com/resource/en/datasheet/lsm6ds3.pdf" H 6350 3300 50  0001 C CNN
+	1    6250 3950
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

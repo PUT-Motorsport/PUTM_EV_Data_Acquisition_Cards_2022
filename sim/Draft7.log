@@ -1,0 +1,19 @@
+Circuit: * C:\Users\molso\OneDrive\Pulpit\LABY semest7\SEZON2022\sim\Draft7.asc
+
+C1: Increased Cpar to 1e-012
+
+Date: Thu Apr 14 17:11:09 2022
+Total elapsed time: 0.054 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 0
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
+matrix size = 4
+fillins = 1
+solver = Normal
+

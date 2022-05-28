@@ -1,0 +1,435 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 24 25
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:GND #PWR?
+U 1 1 622B2853
+P 6400 3150
+AR Path="/61B3782A/622B2853" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B2853" Ref="#PWR?"  Part="1" 
+AR Path="/61B830EB/622B2853" Ref="#PWR?"  Part="1" 
+AR Path="/61B89762/622B2853" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B2853" Ref="#PWR?"  Part="1" 
+AR Path="/61B8BFD3/622B2853" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B2853" Ref="#PWR062"  Part="1" 
+AR Path="/622CB299/622B2853" Ref="#PWR0121"  Part="1" 
+F 0 "#PWR062" H 6400 2900 50  0001 C CNN
+F 1 "GND" H 6405 2977 50  0000 C CNN
+F 2 "" H 6400 3150 50  0001 C CNN
+F 3 "" H 6400 3150 50  0001 C CNN
+	1    6400 3150
+	1    0    0    -1  
+$EndComp
+Text HLabel 7650 2750 2    50   Output ~ 0
+OUT
+$Comp
+L power:GND #PWR?
+U 1 1 622B285A
+P 6800 2450
+AR Path="/61B3782A/622B285A" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B285A" Ref="#PWR?"  Part="1" 
+AR Path="/61B830EB/622B285A" Ref="#PWR?"  Part="1" 
+AR Path="/61B89762/622B285A" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B285A" Ref="#PWR?"  Part="1" 
+AR Path="/61B8BFD3/622B285A" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B285A" Ref="#PWR095"  Part="1" 
+AR Path="/622CB299/622B285A" Ref="#PWR0122"  Part="1" 
+F 0 "#PWR095" H 6800 2200 50  0001 C CNN
+F 1 "GND" H 6805 2277 50  0000 C CNN
+F 2 "" H 6800 2450 50  0001 C CNN
+F 3 "" H 6800 2450 50  0001 C CNN
+	1    6800 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6800 2450 6800 2400
+Wire Wire Line
+	6400 2400 6400 2450
+Connection ~ 6400 2400
+$Comp
+L Device:C C?
+U 1 1 622B2864
+P 6650 2400
+AR Path="/61B3782A/622B2864" Ref="C?"  Part="1" 
+AR Path="/61B81C92/622B2864" Ref="C?"  Part="1" 
+AR Path="/61B830EB/622B2864" Ref="C?"  Part="1" 
+AR Path="/61B89762/622B2864" Ref="C?"  Part="1" 
+AR Path="/61B8AB81/622B2864" Ref="C?"  Part="1" 
+AR Path="/61B8BFD3/622B2864" Ref="C?"  Part="1" 
+AR Path="/622AFF92/622B2864" Ref="C25"  Part="1" 
+AR Path="/622CB299/622B2864" Ref="C38"  Part="1" 
+F 0 "C25" V 6398 2400 50  0000 C CNN
+F 1 "100n" V 6489 2400 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6688 2250 50  0001 C CNN
+F 3 "~" H 6650 2400 50  0001 C CNN
+	1    6650 2400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6400 2350 6400 2400
+Wire Wire Line
+	6500 2400 6400 2400
+Text HLabel 3850 2550 0    50   Input ~ 0
+IN
+Wire Wire Line
+	7650 2750 6800 2750
+$Comp
+L power:+3.3V #PWR?
+U 1 1 622B2871
+P 6400 2350
+AR Path="/61B3782A/622B2871" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B2871" Ref="#PWR?"  Part="1" 
+AR Path="/61B830EB/622B2871" Ref="#PWR?"  Part="1" 
+AR Path="/61B89762/622B2871" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B2871" Ref="#PWR?"  Part="1" 
+AR Path="/61B8BFD3/622B2871" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B2871" Ref="#PWR061"  Part="1" 
+AR Path="/622CB299/622B2871" Ref="#PWR0120"  Part="1" 
+F 0 "#PWR061" H 6400 2200 50  0001 C CNN
+F 1 "+3.3V" H 6415 2523 50  0000 C CNN
+F 2 "" H 6400 2350 50  0001 C CNN
+F 3 "" H 6400 2350 50  0001 C CNN
+	1    6400 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:MCP6001x-LT U?
+U 1 1 622B287A
+P 6500 2750
+AR Path="/61B3782A/622B287A" Ref="U?"  Part="1" 
+AR Path="/61B81C92/622B287A" Ref="U?"  Part="1" 
+AR Path="/61B830EB/622B287A" Ref="U?"  Part="1" 
+AR Path="/61B89762/622B287A" Ref="U?"  Part="1" 
+AR Path="/61B8AB81/622B287A" Ref="U?"  Part="1" 
+AR Path="/61B8BFD3/622B287A" Ref="U?"  Part="1" 
+AR Path="/622AFF92/622B287A" Ref="U15"  Part="1" 
+AR Path="/622CB299/622B287A" Ref="U27"  Part="1" 
+F 0 "U15" H 6844 2796 50  0000 L CNN
+F 1 "MCP6001x-LT" H 6844 2705 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-353_SC-70-5" H 6400 2550 50  0001 L CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/21733j.pdf" H 6500 2750 50  0001 C CNN
+F 4 "MCP6001T-I/LT" H 6500 2750 50  0001 C CNN "PartNumber"
+F 5 "https://www.tme.eu/pl/details/mcp6001t-i_lt/wzmacniacze-operacyjne-smd/microchip-technology/" H 6500 2750 50  0001 C CNN "Link"
+	1    6500 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622B2880
+P 5300 2350
+AR Path="/61B3782A/622B2880" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B2880" Ref="#PWR?"  Part="1" 
+AR Path="/61B830EB/622B2880" Ref="#PWR?"  Part="1" 
+AR Path="/61B89762/622B2880" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B2880" Ref="#PWR?"  Part="1" 
+AR Path="/61B8BFD3/622B2880" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B2880" Ref="#PWR059"  Part="1" 
+AR Path="/622CB299/622B2880" Ref="#PWR0118"  Part="1" 
+F 0 "#PWR059" H 5300 2100 50  0001 C CNN
+F 1 "GND" H 5305 2177 50  0000 C CNN
+F 2 "" H 5300 2350 50  0001 C CNN
+F 3 "" H 5300 2350 50  0001 C CNN
+	1    5300 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 2350 5300 2300
+Wire Wire Line
+	4900 2300 4900 2350
+Connection ~ 4900 2300
+$Comp
+L Device:C C?
+U 1 1 622B2889
+P 5150 2300
+AR Path="/61B3782A/622B2889" Ref="C?"  Part="1" 
+AR Path="/61B81C92/622B2889" Ref="C?"  Part="1" 
+AR Path="/61B830EB/622B2889" Ref="C?"  Part="1" 
+AR Path="/61B89762/622B2889" Ref="C?"  Part="1" 
+AR Path="/61B8AB81/622B2889" Ref="C?"  Part="1" 
+AR Path="/61B8BFD3/622B2889" Ref="C?"  Part="1" 
+AR Path="/622AFF92/622B2889" Ref="C24"  Part="1" 
+AR Path="/622CB299/622B2889" Ref="C37"  Part="1" 
+F 0 "C24" V 4898 2300 50  0000 C CNN
+F 1 "100n" V 4989 2300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5188 2150 50  0001 C CNN
+F 3 "~" H 5150 2300 50  0001 C CNN
+	1    5150 2300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4900 2250 4900 2300
+Wire Wire Line
+	5000 2300 4900 2300
+$Comp
+L power:+3.3V #PWR?
+U 1 1 622B2892
+P 4900 2250
+AR Path="/61B3782A/622B2892" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B2892" Ref="#PWR?"  Part="1" 
+AR Path="/61B830EB/622B2892" Ref="#PWR?"  Part="1" 
+AR Path="/61B89762/622B2892" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B2892" Ref="#PWR?"  Part="1" 
+AR Path="/61B8BFD3/622B2892" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B2892" Ref="#PWR049"  Part="1" 
+AR Path="/622CB299/622B2892" Ref="#PWR099"  Part="1" 
+F 0 "#PWR049" H 4900 2100 50  0001 C CNN
+F 1 "+3.3V" H 4915 2423 50  0000 C CNN
+F 2 "" H 4900 2250 50  0001 C CNN
+F 3 "" H 4900 2250 50  0001 C CNN
+	1    4900 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:MCP6001x-LT U?
+U 1 1 622B289A
+P 5000 2650
+AR Path="/61B3782A/622B289A" Ref="U?"  Part="1" 
+AR Path="/61B81C92/622B289A" Ref="U?"  Part="1" 
+AR Path="/61B830EB/622B289A" Ref="U?"  Part="1" 
+AR Path="/61B89762/622B289A" Ref="U?"  Part="1" 
+AR Path="/61B8AB81/622B289A" Ref="U?"  Part="1" 
+AR Path="/61B8BFD3/622B289A" Ref="U?"  Part="1" 
+AR Path="/622AFF92/622B289A" Ref="U12"  Part="1" 
+AR Path="/622CB299/622B289A" Ref="U21"  Part="1" 
+F 0 "U12" H 5344 2696 50  0000 L CNN
+F 1 "MCP6001x-LT" H 5344 2605 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-353_SC-70-5" H 4900 2450 50  0001 L CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/21733j.pdf" H 5000 2650 50  0001 C CNN
+F 4 "MCP6001T-I/LT" H 5000 2650 50  0001 C CNN "PartNumber"
+F 5 "https://www.tme.eu/pl/details/mcp6001t-i_lt/wzmacniacze-operacyjne-smd/microchip-technology/" H 5000 2650 50  0001 C CNN "Link"
+	1    5000 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 622B28A0
+P 4250 2750
+AR Path="/61B3782A/622B28A0" Ref="R?"  Part="1" 
+AR Path="/61B81C92/622B28A0" Ref="R?"  Part="1" 
+AR Path="/61B8AB81/622B28A0" Ref="R?"  Part="1" 
+AR Path="/622AFF92/622B28A0" Ref="R49"  Part="1" 
+AR Path="/622CB299/622B28A0" Ref="R57"  Part="1" 
+F 0 "R49" V 4350 2750 50  0000 C CNN
+F 1 "10k" V 4450 2750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4180 2750 50  0001 C CNN
+F 3 "~" H 4250 2750 50  0001 C CNN
+	1    4250 2750
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 622B28A6
+P 4250 2550
+AR Path="/61B3782A/622B28A6" Ref="R?"  Part="1" 
+AR Path="/61B81C92/622B28A6" Ref="R?"  Part="1" 
+AR Path="/61B8AB81/622B28A6" Ref="R?"  Part="1" 
+AR Path="/622AFF92/622B28A6" Ref="R48"  Part="1" 
+AR Path="/622CB299/622B28A6" Ref="R56"  Part="1" 
+F 0 "R48" V 4050 2550 50  0000 C CNN
+F 1 "1k" V 4150 2550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4180 2550 50  0001 C CNN
+F 3 "~" H 4250 2550 50  0001 C CNN
+	1    4250 2550
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 622B28AC
+P 4950 3400
+AR Path="/61B3782A/622B28AC" Ref="R?"  Part="1" 
+AR Path="/61B81C92/622B28AC" Ref="R?"  Part="1" 
+AR Path="/61B8AB81/622B28AC" Ref="R?"  Part="1" 
+AR Path="/622AFF92/622B28AC" Ref="R51"  Part="1" 
+AR Path="/622CB299/622B28AC" Ref="R59"  Part="1" 
+F 0 "R51" V 4850 3400 50  0000 C CNN
+F 1 "2K" V 5050 3400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4880 3400 50  0001 C CNN
+F 3 "~" H 4950 3400 50  0001 C CNN
+	1    4950 3400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 3400 5100 3400
+Connection ~ 5300 2650
+Wire Wire Line
+	4800 3400 4600 3400
+Wire Wire Line
+	4700 2550 4450 2550
+$Comp
+L power:GND #PWR?
+U 1 1 622B28B6
+P 4900 3000
+AR Path="/61B3782A/622B28B6" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B28B6" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B28B6" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B28B6" Ref="#PWR050"  Part="1" 
+AR Path="/622CB299/622B28B6" Ref="#PWR0100"  Part="1" 
+F 0 "#PWR050" H 4900 2750 50  0001 C CNN
+F 1 "GND" H 4905 2827 50  0000 C CNN
+F 2 "" H 4900 3000 50  0001 C CNN
+F 3 "" H 4900 3000 50  0001 C CNN
+	1    4900 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4900 3000 4900 2950
+Wire Wire Line
+	4400 2750 4600 2750
+Wire Wire Line
+	5300 2650 5300 3400
+Wire Wire Line
+	4600 2750 4600 3400
+Connection ~ 4600 2750
+Wire Wire Line
+	4600 2750 4700 2750
+Wire Wire Line
+	4100 2550 3850 2550
+$Comp
+L power:+5V #PWR?
+U 1 1 622B28D4
+P 3250 2300
+AR Path="/61B3782A/622B28D4" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B28D4" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B28D4" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B28D4" Ref="#PWR046"  Part="1" 
+AR Path="/622CB299/622B28D4" Ref="#PWR096"  Part="1" 
+F 0 "#PWR046" H 3250 2150 50  0001 C CNN
+F 1 "+5V" H 3265 2473 50  0000 C CNN
+F 2 "" H 3250 2300 50  0001 C CNN
+F 3 "" H 3250 2300 50  0001 C CNN
+	1    3250 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622B28DA
+P 3250 3250
+AR Path="/61B3782A/622B28DA" Ref="#PWR?"  Part="1" 
+AR Path="/61B81C92/622B28DA" Ref="#PWR?"  Part="1" 
+AR Path="/61B8AB81/622B28DA" Ref="#PWR?"  Part="1" 
+AR Path="/622AFF92/622B28DA" Ref="#PWR047"  Part="1" 
+AR Path="/622CB299/622B28DA" Ref="#PWR097"  Part="1" 
+F 0 "#PWR047" H 3250 3000 50  0001 C CNN
+F 1 "GND" H 3255 3077 50  0000 C CNN
+F 2 "" H 3250 3250 50  0001 C CNN
+F 3 "" H 3250 3250 50  0001 C CNN
+	1    3250 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 622B28E1
+P 4450 2200
+AR Path="/61B3782A/622B28E1" Ref="R?"  Part="1" 
+AR Path="/61B81C92/622B28E1" Ref="R?"  Part="1" 
+AR Path="/61B8AB81/622B28E1" Ref="R?"  Part="1" 
+AR Path="/622AFF92/622B28E1" Ref="R50"  Part="1" 
+AR Path="/622CB299/622B28E1" Ref="R58"  Part="1" 
+F 0 "R50" H 4520 2246 50  0000 L CNN
+F 1 "2k" H 4520 2155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4380 2200 50  0001 C CNN
+F 3 "~" H 4450 2200 50  0001 C CNN
+	1    4450 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2350 4450 2550
+Connection ~ 4450 2550
+Wire Wire Line
+	4450 2550 4400 2550
+$Comp
+L power:GND #PWR048
+U 1 1 622B5C0F
+P 4200 2050
+AR Path="/622AFF92/622B5C0F" Ref="#PWR048"  Part="1" 
+AR Path="/622CB299/622B5C0F" Ref="#PWR098"  Part="1" 
+F 0 "#PWR048" H 4200 1800 50  0001 C CNN
+F 1 "GND" H 4205 1877 50  0000 C CNN
+F 2 "" H 4200 2050 50  0001 C CNN
+F 3 "" H 4200 2050 50  0001 C CNN
+	1    4200 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2050 4450 2000
+Wire Wire Line
+	4450 2000 4200 2000
+Wire Wire Line
+	4200 2000 4200 2050
+Wire Wire Line
+	6400 3050 6400 3150
+Wire Wire Line
+	6800 2750 6800 3500
+Connection ~ 6800 2750
+$Comp
+L power:GND #PWR060
+U 1 1 622C2A5C
+P 5800 3650
+AR Path="/622AFF92/622C2A5C" Ref="#PWR060"  Part="1" 
+AR Path="/622CB299/622C2A5C" Ref="#PWR0119"  Part="1" 
+F 0 "#PWR060" H 5800 3400 50  0001 C CNN
+F 1 "GND" H 5805 3477 50  0000 C CNN
+F 2 "" H 5800 3650 50  0001 C CNN
+F 3 "" H 5800 3650 50  0001 C CNN
+	1    5800 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 3650 5800 3500
+Wire Wire Line
+	5800 3500 5850 3500
+Wire Wire Line
+	5300 2650 6200 2650
+$Comp
+L Device:R_POT RV1
+U 1 1 6253D05D
+P 3250 2750
+AR Path="/622AFF92/6253D05D" Ref="RV1"  Part="1" 
+AR Path="/622CB299/6253D05D" Ref="RV3"  Part="1" 
+F 0 "RV1" H 3180 2796 50  0000 R CNN
+F 1 "2K" H 3180 2705 50  0000 R CNN
+F 2 "TC33X-2-103E:TRIM_TC33X-2-103E" H 3250 2750 50  0001 C CNN
+F 3 "~" H 3250 2750 50  0001 C CNN
+	1    3250 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 2300 3250 2600
+Wire Wire Line
+	3250 2900 3250 3250
+Wire Wire Line
+	3400 2750 4100 2750
+$Comp
+L Device:R_POT RV2
+U 1 1 625426D9
+P 6000 3500
+AR Path="/622AFF92/625426D9" Ref="RV2"  Part="1" 
+AR Path="/622CB299/625426D9" Ref="RV4"  Part="1" 
+F 0 "RV2" H 5930 3546 50  0000 R CNN
+F 1 "3K" H 5930 3455 50  0000 R CNN
+F 2 "TC33X-2-103E:TRIM_TC33X-2-103E" H 6000 3500 50  0001 C CNN
+F 3 "~" H 6000 3500 50  0001 C CNN
+	1    6000 3500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6150 3500 6800 3500
+Wire Wire Line
+	6000 3350 6000 2850
+Wire Wire Line
+	6000 2850 6200 2850
+Text Notes 6050 4450 0    39   ~ 0
+rezystor (100) dodać gnd rv2 1
+$EndSCHEMATC

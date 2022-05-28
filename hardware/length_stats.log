@@ -1,0 +1,12 @@
+01-03 19:55:39 Kicad_action_plugins-master.length_stats.action_length_stats 304:Plugin executed on: 'win32'
+01-03 19:55:39 Kicad_action_plugins-master.length_stats.action_length_stats 305:Plugin executed with python version: '2.7.18 (default, Apr 20 2020, 16:57:11)  [GCC 9.3.0 64 bit (AMD64)]'
+01-03 19:55:39 Kicad_action_plugins-master.length_stats.action_length_stats 306:KiCad build version: (5.1.10)-1
+01-03 19:55:39 Kicad_action_plugins-master.length_stats.action_length_stats 307:Length stats plugin version: 30 started
+01-03 19:55:40 Kicad_action_plugins-master.length_stats.action_length_stats 207:Sorting list
+01-03 19:55:40 Kicad_action_plugins-master.length_stats.action_length_stats 95:Length stats gui initialized
+01-03 19:55:40 Kicad_action_plugins-master.length_stats.action_length_stats 96:Nets for stats are;
+[u'/CAN_TX']
+01-03 19:55:44 Kicad_action_plugins-master.length_stats.action_length_stats 187:Removing highlights for nets:
+[u'/CAN_TX']
+01-03 19:55:45 Kicad_action_plugins-master.length_stats.action_length_stats 198:Adding highlights for nets:
+[u'/CAN_TX']

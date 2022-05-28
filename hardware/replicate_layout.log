@@ -1,0 +1,102 @@
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 313:Plugin executed on: 'win32'
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 314:Plugin executed with python version: '2.7.18 (default, Apr 20 2020, 16:57:11)  [GCC 9.3.0 64 bit (AMD64)]'
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 315:KiCad build version: (5.1.10)-1
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 316:Replicate layout plugin version: 74 started
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 329:All top level windows titles are:
+kicad (5.1.10)-1 c:\users\molso\onedrive\pulpit\laby semest7\sezon2022\hardware\karta_pomiarowa_v2.pro
+
+pcbnew — c:\users\molso\onedrive\pulpit\laby semest7\sezon2022\hardware\karta_pomiarowa_v2.kicad_pcb
+
+
+eeschema — brake pressure.sch [/left/] — c:\users\molso\onedrive\pulpit\laby semest7\sezon2022\hardware
+
+3d viewer
+
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 330:All top level windows objects are:
+ <wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x3257170> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x3169820> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x1a24d020> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x196f50a0> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x196f7d50> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x38e7f080> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x196f68b0> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x1a904850> >
+<wx._windows.Frame; proxy of <Swig Object of type 'wxFrame *' at 0x196f5410> >
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 353:Preparing replicator with RV4 as a reference
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 215:getting project hierarchy from schematics
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 217:Project hierarchy looks like:
+{u'61BAC441': [u'CAN_TRASCIVER', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\CAN.sch'], u'61B3BFDE': [u'Output1', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Output.sch'], u'61B68346': [u'conectors', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Connector.sch'], u'61B3D6A6': [u'Output2', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Output.sch'], u'61B211D6': [u'Isolated_input4', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'6228228B': [u'Left_s', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\suspension potentiometr.sch'], u'619AB8AA': [u'ISM330DHCXTR', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\gyro&acc.sch'], u'61B1E4D3': [u'Isolated_input1', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'61B8AB81': [u'Analog4', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Analog.sch'], u'622AFF92': [u'Right', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Brake pressure.sch'], u'61948118': [u'Output0', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Output.sch'], u'61C30A7A': [u'sheet61C30A76', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'618D845A': [u'Isolated_input0', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'61B23D59': [u'Isolated_input6', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'61B2B5D4': [u'Isolated_input3', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'61C006DE': [u'Indicator LEDs', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Indicator LEDs.sch'], u'61B45C7B': [u'EEPROM', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\eeprom.sch'], u'622CB299': [u'Left', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Brake pressure.sch'], u'61B1FB44': [u'Isolated_input2', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'61B2CBB8': [u'Isolated_input7', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'61B89762': [u'Analog3', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Analog.sch'], u'61B227D2': [u'Isolated_input5', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\Isolated_input.sch'], u'62268C11': [u'Right_s', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\suspension potentiometr.sch'], u'61C19338': [u'Power supply', u'C:\\Users\\molso\\OneDrive\\Pulpit\\LABY semest7\\SEZON2022\\hardware\\power_supply.sch']}
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 225:getting a list of all footprints on board
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 380:source anchor footprint is u'RV4'
+Located on:[u'Left']
+With filenames:[u'Brake pressure.sch']
+With sheet_id:[u'Left']
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 384:Corresponding footprints are 
+[(u'RV4', [u'Left']), (u'RV2', [u'Right'])]
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 397:Showing dialog
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 249:construcing a list of sheets suitable for replication on level:u'Left', file:u'Brake pressure.sch'
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 256:Source sheet path up to the level:[u'Left']
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 260:Footprints on the sheets:
+[u'RV4', u'RV2']
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 263:Footprints raw sheet ids:
+[u'/622CB299/625426D9', u'/622AFF92/625426D9']
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 279:All sheets to replicate:
+[[u'Left'], [u'Right']]
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 284:All sheets to replicate sorted:
+[[u'Left'], [u'Right']]
+04-09 11:47:28 Kicad_action_plugins-master.replicate_layout.replicatelayout 290:All sheets to replicate sorted and without source sheet:
+[[u'Right']]
+04-09 11:47:32 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 401:Pcbnew position: wx.Point(2391, -9)
+04-09 11:47:32 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 407:Display 0: wx.Rect(0, 0, 1920, 1080)
+04-09 11:47:32 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 407:Display 1: wx.Rect(2400, 0, 2400, 1350)
+04-09 11:47:32 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 411:Toolbar position: wx.Point(4567, 132)
+04-09 11:47:32 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 418:Dialog position: wx.Point(4254, 132)
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 249:construcing a list of sheets suitable for replication on level:u'Left', file:u'Brake pressure.sch'
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 256:Source sheet path up to the level:[u'Left']
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 260:Footprints on the sheets:
+[u'RV4', u'RV2']
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 263:Footprints raw sheet ids:
+[u'/622CB299/625426D9', u'/622AFF92/625426D9']
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 279:All sheets to replicate:
+[[u'Left'], [u'Right']]
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 284:All sheets to replicate sorted:
+[[u'Left'], [u'Right']]
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 290:All sheets to replicate sorted and without source sheet:
+[[u'Right']]
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 186:Replicating layout
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 1002:Starting replication of sheets: [[u'Right']]
+on level: [u'Left']
+with tracks=True, zone=True, text=True, containing=True, remove=False, locked=False
+04-09 11:47:44 root 269:updating GUI message: 'Preparing for replication'
+04-09 11:47:44 root 274:updating GUI with: 0
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 556:Getting the list of source footprints
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 560:Getting the list of all the remaining footprints
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 564:Getting nets local to source footprints
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 568:Getting source bounding box
+04-09 11:47:44 root 274:updating GUI with: 37
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 572:Getting source tracks
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 576:Getting source zones
+04-09 11:47:44 root 274:updating GUI with: 62
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 580:Getting source text items
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 584:Getting source text items
+04-09 11:47:44 root 274:updating GUI with: 100
+04-09 11:47:44 root 269:updating GUI message: 'Replicating footprints'
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 590:Replicating footprints
+04-09 11:47:44 Kicad_action_plugins-master.replicate_layout.replicatelayout 596:Replicating footprints on sheet [u'Right']
+04-09 11:47:44 root 274:updating GUI with: 30
+04-09 11:47:44 root 274:updating GUI with: 89
+04-09 11:47:44 root 269:updating GUI message: 'Replicating tracks'
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 720:Replicating tracks
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 726:Replicating tracks on sheet [u'Right']
+04-09 11:47:45 root 274:updating GUI with: 2
+04-09 11:47:45 root 269:updating GUI message: 'Replicating zones'
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 771:Replicating zones
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 778:Replicating zones on sheet [u'Right']
+04-09 11:47:45 root 269:updating GUI message: 'Replicating text'
+04-09 11:47:45 root 274:updating GUI with: 0
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 837:Replicating text
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 844:Replicating text on sheet [u'Right']
+04-09 11:47:45 root 269:updating GUI message: 'Replicating drawings'
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 868:Replicating drawings
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.replicatelayout 874:Replicating drawings on sheet [u'Right']
+04-09 11:47:45 Kicad_action_plugins-master.replicate_layout.action_replicate_layout 209:Replication complete

@@ -1,0 +1,181 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 12 25
+Title "Digital output"
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L mcp14a0052t:MCP14A0052T e1
+U 1 1 61DEA21F
+P 4200 3300
+AR Path="/61948118/61DEA21F" Ref="e1"  Part="1" 
+AR Path="/61B3BFDE/61DEA21F" Ref="U22"  Part="1" 
+AR Path="/61B3D6A6/61DEA21F" Ref="U23"  Part="1" 
+F 0 "U23" H 4644 3346 50  0000 L CNN
+F 1 "MCP14A0052T" H 4644 3255 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 4200 2700 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20002092F.pdf" H 4000 3550 50  0001 C CNN
+F 4 "MCP14A0052T-E/CH" H 4200 3300 50  0001 C CNN "PartNumber"
+F 5 "https://www.digikey.pl/en/products/detail/microchip-technology/MCP14A0052T-E-CH/5137676" H 4200 3300 50  0001 C CNN "Link"
+	1    4200 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 61DEA751
+P 4250 3700
+AR Path="/61948118/61DEA751" Ref="#PWR0101"  Part="1" 
+AR Path="/61B3BFDE/61DEA751" Ref="#PWR0104"  Part="1" 
+AR Path="/61B3D6A6/61DEA751" Ref="#PWR0107"  Part="1" 
+F 0 "#PWR0107" H 4250 3450 50  0001 C CNN
+F 1 "GND" H 4255 3527 50  0000 C CNN
+F 2 "" H 4250 3700 50  0001 C CNN
+F 3 "" H 4250 3700 50  0001 C CNN
+	1    4250 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 3600 4250 3600
+Wire Wire Line
+	4250 3600 4250 3700
+Connection ~ 4250 3600
+Wire Wire Line
+	4250 3600 4300 3600
+$Comp
+L power:+5V #PWR0102
+U 1 1 61DEAEC2
+P 4200 2900
+AR Path="/61948118/61DEAEC2" Ref="#PWR0102"  Part="1" 
+AR Path="/61B3BFDE/61DEAEC2" Ref="#PWR0105"  Part="1" 
+AR Path="/61B3D6A6/61DEAEC2" Ref="#PWR0108"  Part="1" 
+F 0 "#PWR0108" H 4200 2750 50  0001 C CNN
+F 1 "+5V" H 4215 3073 50  0000 C CNN
+F 2 "" H 4200 2900 50  0001 C CNN
+F 3 "" H 4200 2900 50  0001 C CNN
+	1    4200 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 2900 4200 2950
+Wire Wire Line
+	4200 2950 4450 2950
+Connection ~ 4200 2950
+Wire Wire Line
+	4200 2950 4200 3000
+$Comp
+L Device:C C2
+U 1 1 61DEB3CF
+P 4600 2950
+AR Path="/61948118/61DEB3CF" Ref="C2"  Part="1" 
+AR Path="/61B3BFDE/61DEB3CF" Ref="C34"  Part="1" 
+AR Path="/61B3D6A6/61DEB3CF" Ref="C35"  Part="1" 
+F 0 "C35" V 4348 2950 50  0000 C CNN
+F 1 "100nF" V 4439 2950 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 4638 2800 50  0001 C CNN
+F 3 "~" H 4600 2950 50  0001 C CNN
+	1    4600 2950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 61DEBC70
+P 4800 2950
+AR Path="/61948118/61DEBC70" Ref="#PWR0103"  Part="1" 
+AR Path="/61B3BFDE/61DEBC70" Ref="#PWR0106"  Part="1" 
+AR Path="/61B3D6A6/61DEBC70" Ref="#PWR0109"  Part="1" 
+F 0 "#PWR0109" H 4800 2700 50  0001 C CNN
+F 1 "GND" V 4805 2822 50  0000 R CNN
+F 2 "" H 4800 2950 50  0001 C CNN
+F 3 "" H 4800 2950 50  0001 C CNN
+	1    4800 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4800 2950 4750 2950
+Wire Wire Line
+	3900 3250 3750 3250
+Text HLabel 3750 3250 0    39   Input ~ 0
+IN
+Text HLabel 5550 2350 2    39   Output ~ 0
+OUT
+$Comp
+L Devices:BUK7D25-40EX U24
+U 1 1 61D571D5
+P 5400 3300
+AR Path="/61948118/61D571D5" Ref="U24"  Part="1" 
+AR Path="/61B3BFDE/61D571D5" Ref="U25"  Part="1" 
+AR Path="/61B3D6A6/61D571D5" Ref="U26"  Part="1" 
+F 0 "U26" H 5758 3338 39  0000 L CNN
+F 1 "BUK7D25-40EX" H 5758 3263 39  0000 L CNN
+F 2 "TRANS_PMPB16EPX:TRANS_PMPB16EPX" H 5350 3050 39  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/BUK7D25-40E.pdf" H 5350 3050 39  0001 C CNN
+F 4 "BUK7D25-40EX" H 5400 3300 50  0001 C CNN "PartNumber"
+F 5 "https://www.digikey.pl/en/products/detail/nexperia-usa-inc/BUK7D25-40EX/7669951" H 5400 3300 50  0001 C CNN "Link"
+	1    5400 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 61D59A95
+P 5400 3600
+AR Path="/61948118/61D59A95" Ref="#PWR0110"  Part="1" 
+AR Path="/61B3BFDE/61D59A95" Ref="#PWR0111"  Part="1" 
+AR Path="/61B3D6A6/61D59A95" Ref="#PWR0112"  Part="1" 
+F 0 "#PWR0112" H 5400 3350 50  0001 C CNN
+F 1 "GND" H 5405 3427 50  0000 C CNN
+F 2 "" H 5400 3600 50  0001 C CNN
+F 3 "" H 5400 3600 50  0001 C CNN
+	1    5400 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 3550 5400 3550
+Wire Wire Line
+	5400 3550 5400 3600
+Connection ~ 5400 3550
+Wire Wire Line
+	5400 3550 5450 3550
+Wire Wire Line
+	5700 3050 5600 3050
+Connection ~ 5400 3050
+Wire Wire Line
+	5400 3050 5300 3050
+Connection ~ 5500 3050
+Wire Wire Line
+	5500 3050 5400 3050
+Connection ~ 5600 3050
+Wire Wire Line
+	5600 3050 5500 3050
+Wire Wire Line
+	5500 3050 5500 2750
+$Comp
+L Device:R R5
+U 1 1 61D5CE0B
+P 5500 2600
+AR Path="/61948118/61D5CE0B" Ref="R5"  Part="1" 
+AR Path="/61B3BFDE/61D5CE0B" Ref="R6"  Part="1" 
+AR Path="/61B3D6A6/61D5CE0B" Ref="R7"  Part="1" 
+F 0 "R7" H 5570 2646 50  0000 L CNN
+F 1 "10R" H 5570 2555 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5430 2600 50  0001 C CNN
+F 3 "~" H 5500 2600 50  0001 C CNN
+	1    5500 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 2450 5500 2350
+Wire Wire Line
+	5550 2350 5500 2350
+Wire Wire Line
+	5200 3300 4600 3300
+NoConn ~ 3900 3350
+$EndSCHEMATC
