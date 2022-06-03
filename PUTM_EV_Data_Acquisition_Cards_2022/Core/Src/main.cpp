@@ -25,11 +25,10 @@
 #include <ISM330DHCXSensor.hpp>
 #include <can_functions.hpp>
 #include <LEDs.hpp>
-//#include <ism_task.hpp>
 #include <meansure_task.hpp>
 #include "adc_data.hpp"
 #include "global_variables.hpp"
-
+#include <EepromMemory.hpp>
 #include<stdbool.h>
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -790,11 +789,11 @@ void StartDefaultTask(void *argument)
 void StartBlink01(void *argument)
 {
   /* USER CODE BEGIN StartBlink01 */
-	HAL_I2C_Init(&hi2c2);
+	EepromMemory M24C1(&hi2c2, 0b10100000);
 	uint8_t test = 3;
 	uint8_t result = 0;
-	HAL_I2C_Mem_Write(&hi2c2, 0b10100000, 0x10, 1, (uint8_t*)&test, sizeof(test), HAL_MAX_DELAY);
-	HAL_I2C_Mem_Read(&hi2c2, 0b10100000, 0x10, 1, (uint8_t*)&result, sizeof(result), HAL_MAX_DELAY);
+	M24C1.write(0x10, test);
+	M24C1.read(0x10, &result);
 	/* Infinite loop */
 	for (;;) {
 
