@@ -7,10 +7,7 @@
 
 #include "PUTM_EV_CAN_LIBRARY/lib/can_interface.hpp"
 #include <LEDs.hpp>
-<<<<<<< HEAD:PUTM_EV_Data_Acquisition_Cards_2022/Core/Src/can_functions.cpp
 #include <global_variables.hpp>
-=======
->>>>>>> 1fac1cb78cbeaf5ae22c03ff38208b96f58c2393:data_aqusition_card_v2/Core/Src/can_functions.cpp
 
 extern CAN_HandleTypeDef hcan1;
 
