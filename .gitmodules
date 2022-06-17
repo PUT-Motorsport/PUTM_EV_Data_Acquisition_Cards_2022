@@ -1,9 +1,4 @@
-[submodule "data_aqusition_card_v2/Core/Inc/PUTM_EV_CAN_LIBRARY"]
-	path = data_aqusition_card_v2/Core/Inc/PUTM_EV_CAN_LIBRARY
-	url = https://github.com/PUT-Motorsport/PUTM_EV_CAN_LIBRARY.git
-<<<<<<< HEAD
 [submodule "PUTM_EV_Data_Acquisition_Cards_2022/Core/Inc/PUTM_EV_CAN_LIBRARY"]
 	path = PUTM_EV_Data_Acquisition_Cards_2022/Core/Inc/PUTM_EV_CAN_LIBRARY
-	url = https://github.com/PUT-Motorsport/PUTM_EV_CAN_LIBRARY
-=======
->>>>>>> 1fac1cb78cbeaf5ae22c03ff38208b96f58c2393
+	url = https://github.com/PUT-Motorsport/PUTM_EV_CAN_LIBRARY.git
+	branch = main
