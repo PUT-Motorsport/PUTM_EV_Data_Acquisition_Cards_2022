@@ -19,4 +19,5 @@ void can_acceleraton_frame_send(int16_t acc_x, int16_t acc_y,
 		int16_t acc_z);
 void can_gyroscope_frame_send(int16_t speed_x, int16_t speed_y,
 		int16_t speed_z);
+void can_ts_button_frame_send();
 #endif /* INC_CAN_FUNCTIONS_HPP_ */
