@@ -33,7 +33,6 @@ void init_can_config(void) {
 		Set_Warning();
 		Error_Handler();
 	}
-
 	if (HAL_CAN_ActivateNotification(&hcan1,
 	CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_TX_MAILBOX_EMPTY) != HAL_OK) {
 		Set_CAN_Warning();
@@ -43,14 +42,13 @@ void init_can_config(void) {
 }
 
 void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left,
-		uint8_t brake_pressure_front, uint8_t brake_pressure_back, Status status) {
+		uint16_t brake_pressure_front, Status status) {
 
-	PUTM_CAN::AQ_main aq_frame { adc_susp_right, adc_susp_left, // i brake balance
-			brake_pressure_front, // pressure of braking lquid front in %
-			brake_pressure_back, // pressure of braking lquid back in %
-
-	};
-
+//	PUTM_CAN::AQ_main aq_frame { adc_susp_right, adc_susp_left,
+//			brake_pressure_front, // pressure of braking liquid front in %
+//			brake_pressure_back, // pressure of braking liquid back in %
+//	};
+	PUTM_CAN::AQ_main aq_frame{};
 
 	auto aq_main_frame = PUTM_CAN::Can_tx_message<PUTM_CAN::AQ_main>(aq_frame,
 			PUTM_CAN::can_tx_header_AQ_MAIN);
@@ -59,7 +57,6 @@ void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left,
 		Set_CAN_Warning();
 		Error_Handler();
 	};
-
 }
 void can_acceleraton_frame_send(int16_t acc_x, int16_t acc_y, int16_t acc_z) {
 	PUTM_CAN::AQ_acceleration aq_frame { acc_x, acc_y, acc_z, };
@@ -80,7 +77,16 @@ void can_gyroscope_frame_send(int16_t speed_x, int16_t speed_y,
 	if (HAL_StatusTypeDef::HAL_OK != status) {
 		Set_CAN_Warning();
 		Error_Handler();
+	};
+}
 
+void can_ts_button_frame_send(){
+	PUTM_CAN::AQ_ts_button aq_frame{};
+	auto aq_ts_frame = PUTM_CAN::Can_tx_message<PUTM_CAN::AQ_ts_button>(aq_frame, PUTM_CAN::can_tx_header_AQ_TS_BUTTON);
+	auto status = aq_ts_frame.send(hcan1);
+	if (HAL_StatusTypeDef::HAL_OK != status) {
+		Set_CAN_Warning();
+		Error_Handler();
 	};
 }
 

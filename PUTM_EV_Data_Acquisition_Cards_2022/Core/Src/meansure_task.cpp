@@ -8,9 +8,6 @@
 #include <meansure_task.hpp>
 
 uint16_t braking_pressure_bar_calculation(uint16_t adc_value) {
-	/* 0 --- 5V
-	 * 0 --- 250bar
-	 */
 	uint16_t val = adc_value / 819;
 	return val;
 

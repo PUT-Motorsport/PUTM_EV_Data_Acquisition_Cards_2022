@@ -8,7 +8,6 @@
 #include <EepromMemory.hpp>
 
 EepromMemory::EepromMemory(I2C_HandleTypeDef *hi2c, uint8_t devAddress) {
-	// TODO Auto-generated constructor stub
 	this->devAddress =devAddress;
 	this->hi2c = hi2c;
 	HAL_I2C_Init(hi2c);
