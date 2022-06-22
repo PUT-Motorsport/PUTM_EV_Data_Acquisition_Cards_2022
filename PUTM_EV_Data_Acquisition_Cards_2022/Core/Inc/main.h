@@ -73,8 +73,9 @@ void SystemClock_Config(void);
 #define ADC5_GPIO_Port GPIOC
 #define kill_driver_input_Pin GPIO_PIN_0
 #define kill_driver_input_GPIO_Port GPIOB
-#define kill_right_input_Pin GPIO_PIN_1
-#define kill_right_input_GPIO_Port GPIOB
+#define ts_input_Pin GPIO_PIN_1
+#define ts_input_GPIO_Port GPIOB
+#define ts_input_EXTI_IRQn EXTI1_IRQn
 #define kill_left_input_Pin GPIO_PIN_2
 #define kill_left_input_GPIO_Port GPIOB
 #define EEPROM_SCL_Pin GPIO_PIN_10
@@ -89,6 +90,9 @@ void SystemClock_Config(void);
 #define LED2_GPIO_Port GPIOB
 #define LED3_Pin GPIO_PIN_15
 #define LED3_GPIO_Port GPIOB
+#define ts_input_new_Pin GPIO_PIN_10
+#define ts_input_new_GPIO_Port GPIOA
+#define ts_input_new_EXTI_IRQn EXTI15_10_IRQn
 #define inertia_input_Pin GPIO_PIN_3
 #define inertia_input_GPIO_Port GPIOB
 #define overtravel_input_Pin GPIO_PIN_4

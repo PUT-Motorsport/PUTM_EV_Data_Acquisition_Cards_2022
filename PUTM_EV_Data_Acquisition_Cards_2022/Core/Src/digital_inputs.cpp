@@ -8,7 +8,7 @@
 #include "digital_inputs.hpp"
 #include "main.h"
 
-uint16_t digital_pin[5] = {kill_driver_input_Pin, kill_right_input_Pin, kill_left_input_Pin, inertia_input_Pin, overtravel_input_Pin};
+uint16_t digital_pin[4] = {kill_driver_input_Pin, kill_left_input_Pin, inertia_input_Pin, overtravel_input_Pin};
 
 /**
  * @return byte with set bits depending on digital inputs state
