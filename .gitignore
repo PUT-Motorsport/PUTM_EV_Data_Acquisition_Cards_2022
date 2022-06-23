@@ -29,7 +29,6 @@ fp-info-cache
 **/Debug
 **/Drivers
 **/Release
-**/Startup
 
 # Prerequisites
 *.d
