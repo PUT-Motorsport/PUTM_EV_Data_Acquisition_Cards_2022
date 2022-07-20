@@ -31,7 +31,7 @@
 #include "adc_data.hpp"
 #include "global_variables.hpp"
 #include <EepromMemory.hpp>
-#include<stdbool.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 /* USER CODE END Includes */
@@ -54,7 +54,7 @@ typedef StaticTask_t osStaticThreadDef_t;
 
 #define M24C01_ADDRESS (0x28 << 1)
 uint8_t dig = 0;
-uint8_t ts_flag = 0;
+bool ts_flag = false;
 
 bool ts_input_pin;
 /* USER CODE END PD */
@@ -795,9 +795,9 @@ void ism_read(uint8_t address, uint8_t nBytesToRead, uint8_t *buffer) {
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
-	if (GPIO_Pin == ts_input_new_Pin) {
+	if (GPIO_Pin == ts_input_Pin && ts_flag == false) {
 		HAL_TIM_Base_Start_IT(&htim2);
-		ts_flag = 1;
+		ts_flag = true;
 	}
 	else{
 		__NOP();
@@ -861,7 +861,8 @@ void StartDefaultTask(void *argument)
 				(int16_t) acc[2]);
 
 		if (adc_data[Analog_channel::BRAKE_FRONT]>1000 && ts_flag) {
-			ts_flag = 0;
+			ts_flag = false;
+			HAL_TIM_Base_Stop_IT(&htim2);
 			can_gyroscope_frame_send((int16_t) 100, (int16_t)100, (int16_t)100);
 			osDelay(100);
 		}
@@ -903,20 +904,20 @@ void StartBlink01(void *argument)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
-
+	UNUSED(htim);
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM6) {
+  /*if (htim->Instance == TIM6) {
     HAL_IncTick();
-  }
+  }*/
   /* USER CODE BEGIN Callback 1 */
-  else if(htim->Instance == TIM2)
-  {
-  	if(HAL_GPIO_ReadPin(ts_input_GPIO_Port, ts_input_Pin)==GPIO_PIN_SET){
-  		//ts_flag = 1;
-  		//HAL_TIM_Base_Stop_IT(&htim2);
+  //else if(htim->Instance == TIM2)
+  //{
+  	if(HAL_GPIO_ReadPin(ts_input_GPIO_Port, ts_input_Pin) == GPIO_PIN_RESET){
+  		ts_flag = false;
+  		HAL_TIM_Base_Stop_IT(&htim2);
   	}
 
-  }
+  //}
   /* USER CODE END Callback 1 */
 }
 
