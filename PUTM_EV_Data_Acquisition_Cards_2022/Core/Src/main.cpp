@@ -54,7 +54,9 @@ typedef StaticTask_t osStaticThreadDef_t;
 
 #define M24C01_ADDRESS (0x28 << 1)
 uint8_t dig = 0;
+bool button_flag = false;
 bool ts_flag = false;
+
 
 bool ts_input_pin;
 /* USER CODE END PD */
@@ -211,7 +213,7 @@ int main(void)
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
-	/* add events, ... */
+
   /* USER CODE END RTOS_EVENTS */
 
   /* Start scheduler */
@@ -795,9 +797,9 @@ void ism_read(uint8_t address, uint8_t nBytesToRead, uint8_t *buffer) {
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
-	if (GPIO_Pin == ts_input_Pin && ts_flag == false) {
+	if (GPIO_Pin == ts_input_new_Pin && button_flag == false) {
 		HAL_TIM_Base_Start_IT(&htim2);
-		ts_flag = true;
+		button_flag = true;
 	}
 	else{
 		__NOP();
@@ -818,7 +820,6 @@ void StartDefaultTask(void *argument)
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 5 */
-	adc_data adc_data;
 	init_can_config();
 	init_can_filter(sFilterConfig);
 
@@ -837,6 +838,8 @@ void StartDefaultTask(void *argument)
 
 	/* Infinite loop */
 	for (;;) {
+
+		adc_data adc_data;
 		dig = scan_digital_inputs();
 		adc[0] = adc_data[Analog_channel::SUSP_R];
 		adc[1] = adc_data[Analog_channel::SUSP_L];
@@ -844,8 +847,8 @@ void StartDefaultTask(void *argument)
 		adc[3] = adc_data[Analog_channel::BRAKE_FRONT];
 		adc[4] = adc_data[Analog_channel::ANALOG_1];
 		adc[5] = adc_data[Analog_channel::ANALOG_2];
-		uint8_t var1 = (uint8_t) (adc[3] & 0x00FF);
-		uint8_t var2 = (uint8_t) (adc[3] >> 8);
+		//uint8_t var1 = (uint8_t) (adc[3] & 0x00FF);
+		//uint8_t var2 = (uint8_t) (adc[3] >> 8);
 		osDelay(20);
 		if (AccGyr.ACC_GetAxes(acc) != ISM330DHCX_OK) {
 			status = Status::Sensor_impossibility;
@@ -860,15 +863,11 @@ void StartDefaultTask(void *argument)
 		can_acceleraton_frame_send((int16_t) acc[0], (int16_t) acc[1],
 				(int16_t) acc[2]);
 
-		if (adc_data[Analog_channel::BRAKE_FRONT]>1000 && ts_flag) {
+		if(ts_flag){
+			can_ts_button_frame_send();
 			ts_flag = false;
-			HAL_TIM_Base_Stop_IT(&htim2);
-			can_gyroscope_frame_send((int16_t) 100, (int16_t)100, (int16_t)100);
-			osDelay(100);
 		}
-		else {
-			can_gyroscope_frame_send((int16_t) 0, (int16_t)0, (int16_t)0);
-		}
+
 
 	}
   /* USER CODE END 5 */
@@ -906,18 +905,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 0 */
 	UNUSED(htim);
   /* USER CODE END Callback 0 */
-  /*if (htim->Instance == TIM6) {
+  if (htim->Instance == TIM6) {
     HAL_IncTick();
-  }*/
+  }
   /* USER CODE BEGIN Callback 1 */
-  //else if(htim->Instance == TIM2)
-  //{
-  	if(HAL_GPIO_ReadPin(ts_input_GPIO_Port, ts_input_Pin) == GPIO_PIN_RESET){
-  		ts_flag = false;
+  //else
+  if(htim->Instance == TIM2)
+  {
+  	if(HAL_GPIO_ReadPin(ts_input_new_GPIO_Port, ts_input_new_Pin) == GPIO_PIN_SET){
+  		button_flag = false;
+  		if (adc[3] > 1000) { //brake pressure treshold here
+  		ts_flag = true;
+  		}
   		HAL_TIM_Base_Stop_IT(&htim2);
   	}
 
-  //}
+  }
   /* USER CODE END Callback 1 */
 }
 

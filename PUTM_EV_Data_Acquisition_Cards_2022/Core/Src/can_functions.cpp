@@ -86,7 +86,9 @@ void can_gyroscope_frame_send(int16_t speed_x, int16_t speed_y,
 }
 
 void can_ts_button_frame_send(){
-	PUTM_CAN::AQ_ts_button aq_frame{};
+	PUTM_CAN::AQ_ts_button aq_frame{
+		.placeholder{1}
+	};
 	auto aq_ts_frame = PUTM_CAN::Can_tx_message<PUTM_CAN::AQ_ts_button>(aq_frame, PUTM_CAN::can_tx_header_AQ_TS_BUTTON);
 	auto status = aq_ts_frame.send(hcan1);
 	if (HAL_StatusTypeDef::HAL_OK != status) {
