@@ -14,7 +14,7 @@
 
 void init_can_filter(CAN_FilterTypeDef sFilterConfig);
 void init_can_config(void);
-void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left, uint16_t brake_pressure_front, Status status );
+void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left, uint16_t brake_pressure_front, uint16_t brake_pressure_back ,Status status );
 void can_acceleraton_frame_send(int16_t acc_x, int16_t acc_y,
 		int16_t acc_z);
 void can_gyroscope_frame_send(int16_t speed_x, int16_t speed_y,

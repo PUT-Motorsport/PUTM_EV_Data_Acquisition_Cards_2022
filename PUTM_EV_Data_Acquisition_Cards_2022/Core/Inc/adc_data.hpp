@@ -15,9 +15,10 @@ enum struct Analog_channel {
 };
 class adc_data {
 public:
-	static std::array<uint16_t, 6> data;
+	static std::array<uint16_t, 120> data;
 	adc_data();
 	uint16_t operator[](Analog_channel channel);
+	uint16_t smooth_value(Analog_channel channel);
 };
 
 #endif /* SRC_ADC_DATA_HPP_ */

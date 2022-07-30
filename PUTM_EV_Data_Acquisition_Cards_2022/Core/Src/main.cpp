@@ -849,6 +849,7 @@ void StartDefaultTask(void *argument)
 		adc[5] = adc_data[Analog_channel::ANALOG_2];
 		//uint8_t var1 = (uint8_t) (adc[3] & 0x00FF);
 		//uint8_t var2 = (uint8_t) (adc[3] >> 8);
+
 		osDelay(20);
 		if (AccGyr.ACC_GetAxes(acc) != ISM330DHCX_OK) {
 			status = Status::Sensor_impossibility;
@@ -859,7 +860,7 @@ void StartDefaultTask(void *argument)
 		status = Status::Normal_operation;
 		can_main_frame_send(adc_data[Analog_channel::SUSP_R],
 				adc_data[Analog_channel::SUSP_L],
-				adc_data[Analog_channel::BRAKE_FRONT], status);
+				adc[3], adc[2] ,status);
 		can_acceleraton_frame_send((int16_t) acc[0], (int16_t) acc[1],
 				(int16_t) acc[2]);
 

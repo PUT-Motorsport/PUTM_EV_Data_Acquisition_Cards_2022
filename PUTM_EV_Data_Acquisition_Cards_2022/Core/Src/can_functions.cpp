@@ -42,7 +42,7 @@ void init_can_config(void) {
 }
 
 void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left,
-		uint16_t brake_pressure_front, Status status) {
+		uint16_t brake_pressure_front,  uint16_t brake_pressure_back ,Status status) {
 
 //	PUTM_CAN::AQ_main aq_frame { adc_susp_right, adc_susp_left,
 //			brake_pressure_front, // pressure of braking liquid front in %
@@ -52,6 +52,7 @@ void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left,
 	aq_frame.suspension_left = adc_susp_left;
 	aq_frame.suspension_right = adc_susp_right;
 	aq_frame.brake_pressure_front = brake_pressure_front;
+	aq_frame.brake_pressure_back = brake_pressure_back;
 	aq_frame.device_state = (PUTM_CAN:: AQ_states) status;
 
 
