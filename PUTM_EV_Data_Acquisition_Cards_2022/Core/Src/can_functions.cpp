@@ -53,6 +53,10 @@ void can_main_frame_send(uint16_t adc_susp_right, uint16_t adc_susp_left,
 	aq_frame.suspension_right = adc_susp_right;
 	aq_frame.brake_pressure_front = brake_pressure_front;
 	aq_frame.brake_pressure_back = brake_pressure_back;
+	aq_frame.driver_kill = HAL_GPIO_ReadPin(kill_driver_input_GPIO_Port, kill_driver_input_Pin);
+	aq_frame.left_kill = HAL_GPIO_ReadPin(kill_left_input_GPIO_Port, kill_left_input_Pin);
+	aq_frame.overtravel = HAL_GPIO_ReadPin(overtravel_input_GPIO_Port, overtravel_input_Pin);
+	aq_frame.inertia = HAL_GPIO_ReadPin(inertia_input_GPIO_Port, inertia_input_Pin);
 	aq_frame.device_state = (PUTM_CAN:: AQ_states) status;
 
 
