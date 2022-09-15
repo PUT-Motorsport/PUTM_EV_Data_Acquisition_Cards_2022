@@ -82,3 +82,13 @@ fp-info-cache
 # folders
 PAPERS/
 /.metadata/
+
+# Logfile
+*.log
+
+# Simulation Outputs
+*.raw
+*.fft
+
+# Netlist
+*.net
