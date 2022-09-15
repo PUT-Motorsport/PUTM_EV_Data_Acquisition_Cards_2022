@@ -83,3 +83,17 @@ fp-info-cache
 # folders
 PAPERS/
 /.metadata/
+
+## LT spice
+# Logfile
+*.log
+
+# Simulation Outputs
+*.raw
+*.fft
+
+# Netlist
+*.net
+
+## Compressed files
+*.zip
