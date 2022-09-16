@@ -17,14 +17,14 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <debugIO.hpp>
-#include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <cstdint>
 #include "common_defs.hpp"
-#include "can_routines.hpp"
+#include "can_functions.hpp"
+#include "debugIO.hpp"
+#include "main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,7 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define USE_FULL_ASSERT
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,8 +53,8 @@ CAN_HandleTypeDef hcan1;
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
-std::array<volatile uint16_t, ADC_BUFFER_SIZE> adc1_buffer;
-std::array<volatile uint16_t, ADC_BUFFER_SIZE> adc2_buffer;
+volatile uint16_t adc1_buffer[ADC_BUFFER_SIZE]{};
+volatile uint16_t adc2_buffer[ADC_BUFFER_SIZE]{};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -116,8 +116,8 @@ int main(void)
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
   HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
 
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t *) adc1_buffer.data(), ADC_BUFFER_SIZE);	//cast to wider type
-  HAL_ADC_Start_DMA(&hadc2, (uint32_t *) adc2_buffer.data(), ADC_BUFFER_SIZE);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *) adc1_buffer, ADC_BUFFER_SIZE);	//cast to wider type
+  HAL_ADC_Start_DMA(&hadc2, (uint32_t *) adc2_buffer, ADC_BUFFER_SIZE);
 
   /* USER CODE END 2 */
 
@@ -128,7 +128,8 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if (lastFramesSentTime > HAL_GetTick() + FRAME_TO_FRAME_TIME) {
-		  send_main_frame()
+		  //todo: normalize brake pressure
+		  Canbus::send_main_frame(reinterpret_cast<volatile ADC1_Data *>(adc1_buffer), reinterpret_cast<volatile ADC2_Data *>(adc2_buffer)); //todo: is it strict aliasing rule violation?
 	  }
     /* USER CODE BEGIN 3 */
   }

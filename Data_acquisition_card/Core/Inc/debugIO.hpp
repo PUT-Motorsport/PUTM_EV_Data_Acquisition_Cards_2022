@@ -4,13 +4,14 @@
 #include <cstdint>
 
 enum class State : uint8_t {
-    OK,
-    GenericWarning,
+    OK = 15,
+    CANMissedMsgWarning = 1,
 	BadSensorRead,
 	AssertionFailed,
 	HALError,
 	HALAssertionFailed,
 	SPIError,
+	BadInitSeq,
 	CANError,
 };
 
@@ -47,7 +48,7 @@ void setState(State state) {
 } //namespace Device
 
 __attribute__((noreturn)) void unrecoverableError(State errorType) {
-	setState(errorType);
+	Device::setState(errorType);
 
 	__disable_irq();
 

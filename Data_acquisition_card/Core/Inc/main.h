@@ -90,7 +90,8 @@ void Error_Handler(void);
 #define Overtravel_sense_Pin GPIO_PIN_4
 #define Overtravel_sense_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-
+#define USE_FULL_ASSERT
+void assert_failed(uint8_t *file, uint32_t line);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
