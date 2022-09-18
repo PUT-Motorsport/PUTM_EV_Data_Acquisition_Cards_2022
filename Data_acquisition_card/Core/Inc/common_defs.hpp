@@ -4,6 +4,8 @@
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 #pragma GCC diagnostic ignored "-Wvolatile"
 
+#include <cstdint>
+
 constexpr std::size_t ADC_BUFFER_SIZE = 3;
 
 struct ADC1_Data {
@@ -30,3 +32,5 @@ enum class Safety : uint8_t {
 constexpr std::uint32_t FRAME_TO_FRAME_TIME = 10;
 
 constexpr std::uint32_t BRAKING_PRESSURE_THRESHOLD = 5000;	//fixme: adjust to correct value
+
+constexpr std::uint32_t RTD_SIGNAL_COOLDOWN = 3000;

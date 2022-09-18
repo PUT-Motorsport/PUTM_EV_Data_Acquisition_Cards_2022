@@ -9,7 +9,7 @@ namespace {
 std::array<bool, SAFETY_ARRAY_SIZE> safety_state;
 }
 
-[[nodiscard]] std::span<bool> get_safety_state() {
+[[nodiscard]] inline std::span<bool> get_safety_state() {
 	safety_state[static_cast<std::size_t>(Safety::Driver_kill)] = 	HAL_GPIO_ReadPin(Kill_driver_sense_GPIO_Port, Kill_driver_sense_Pin);
 	safety_state[static_cast<std::size_t>(Safety::Right_kill)] = 	HAL_GPIO_ReadPin(Kill_right_sense_GPIO_Port, Kill_right_sense_Pin);
 	safety_state[static_cast<std::size_t>(Safety::Left_kill)] = 	HAL_GPIO_ReadPin(Kill_left_sense_GPIO_Port, Kill_left_sense_Pin);

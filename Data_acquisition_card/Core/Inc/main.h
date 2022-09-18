@@ -85,6 +85,9 @@ void Error_Handler(void);
 #define LED2_GPIO_Port GPIOB
 #define LED3_Pin GPIO_PIN_15
 #define LED3_GPIO_Port GPIOB
+#define RTD_input_Pin GPIO_PIN_10
+#define RTD_input_GPIO_Port GPIOA
+#define RTD_input_EXTI_IRQn EXTI15_10_IRQn
 #define BSPD_Sense_Pin GPIO_PIN_3
 #define BSPD_Sense_GPIO_Port GPIOB
 #define Overtravel_sense_Pin GPIO_PIN_4

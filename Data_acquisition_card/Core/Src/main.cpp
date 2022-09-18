@@ -17,14 +17,17 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <cstdint>
+#include <numeric>	//limits
 #include "common_defs.hpp"
 #include "can_functions.hpp"
 #include "debugIO.hpp"
 #include "main.h"
+#include "imu_sensor.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,6 +58,8 @@ SPI_HandleTypeDef hspi1;
 /* USER CODE BEGIN PV */
 volatile uint16_t adc1_buffer[ADC_BUFFER_SIZE]{};
 volatile uint16_t adc2_buffer[ADC_BUFFER_SIZE]{};
+
+bool send_rtd_signal_flag;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -119,6 +124,8 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc1, (uint32_t *) adc1_buffer, ADC_BUFFER_SIZE);	//cast to wider type
   HAL_ADC_Start_DMA(&hadc2, (uint32_t *) adc2_buffer, ADC_BUFFER_SIZE);
 
+  Canbus::initialize(&hcan1);
+  IMU::initialize();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,11 +133,29 @@ int main(void)
   uint32_t lastFramesSentTime{};
   while (1)
   {
-    /* USER CODE END WHILE */
+	  if (send_rtd_signal_flag) {
+		  Canbus::send_rtd_frame();
+		  send_rtd_signal_flag = false;
+	  }
+
 	  if (lastFramesSentTime > HAL_GetTick() + FRAME_TO_FRAME_TIME) {
 		  //todo: normalize brake pressure
 		  Canbus::send_main_frame(reinterpret_cast<volatile ADC1_Data *>(adc1_buffer), reinterpret_cast<volatile ADC2_Data *>(adc2_buffer)); //todo: is it strict aliasing rule violation?
+		  auto [acc_x, acc_y, acc_z] = IMU::get_acc();
+		  auto [gyro_x, gyro_y, gyro_z] = IMU::get_gyro();
+		  Canbus::send_acc_frame(acc_x, acc_y, acc_z);
+		  Canbus::send_gyroscope_frame(acc_x, acc_y, acc_z);
+
+		  //assertions to ensure that the narrowing conversions make sense
+		  RUNTIME_ASSERT(acc_x < std::numeric_limits<int16_t>::max());
+		  RUNTIME_ASSERT(acc_y < std::numeric_limits<int16_t>::max());
+		  RUNTIME_ASSERT(acc_z < std::numeric_limits<int16_t>::max());
+		  RUNTIME_ASSERT(gyro_x < std::numeric_limits<int16_t>::max());
+		  RUNTIME_ASSERT(gyro_y < std::numeric_limits<int16_t>::max());
+		  RUNTIME_ASSERT(gyro_z < std::numeric_limits<int16_t>::max());
 	  }
+    /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -518,6 +543,16 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : RTD_input_Pin */
+  GPIO_InitStruct.Pin = RTD_input_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(RTD_input_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 

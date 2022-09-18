@@ -8,9 +8,9 @@ enum class State : uint8_t {
     CANMissedMsgWarning = 1,
 	BadSensorRead,
 	AssertionFailed,
+	IOSPIError,
 	HALError,
 	HALAssertionFailed,
-	SPIError,
 	BadInitSeq,
 	CANError,
 };
@@ -21,7 +21,7 @@ State state_ = State::OK;
 
 namespace Device {
 
-void setState(State state) {
+inline void setState(State state) {
 
     if (static_cast<uint8_t>(state) <= static_cast<uint8_t>(state_)) { //status level must persist unless a more important error has appeared
         return;
@@ -47,7 +47,7 @@ void setState(State state) {
 
 } //namespace Device
 
-__attribute__((noreturn)) void unrecoverableError(State errorType) {
+__attribute__((noreturn)) inline void unrecoverableError(State errorType) {
 	Device::setState(errorType);
 
 	__disable_irq();
@@ -56,7 +56,7 @@ __attribute__((noreturn)) void unrecoverableError(State errorType) {
 }
 
 #ifndef NDEBUG
-#define ASSERT(statement) {if (not (statement)) unrecoverableError(State::AssertionFailed);}
+#define RUNTIME_ASSERT(statement) {if (not (statement)) unrecoverableError(State::AssertionFailed);}
 #else
-#define ASSERT(statement) ;
+#define RUNTIME_ASSERT(statement) ;
 #endif
