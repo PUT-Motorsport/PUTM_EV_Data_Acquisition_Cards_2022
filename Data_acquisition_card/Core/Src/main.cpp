@@ -587,6 +587,8 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
+	UNUSED(file);
+	UNUSED(line);
 	Device::setState(State::HALAssertionFailed);
 	__disable_irq();
 

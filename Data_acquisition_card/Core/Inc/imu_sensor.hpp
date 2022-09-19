@@ -38,6 +38,10 @@ void initialize() {
 	status += sensorInstance_.FIFO_ACC_Set_BDR(SENSOR_ODR);
 	status += sensorInstance_.FIFO_GYRO_Set_BDR(SENSOR_ODR);
 	status += sensorInstance_.FIFO_Set_Mode(ISM330DHCX_STREAM_MODE);
+
+	if (status not_eq 0) {
+		Device::setState(State::IOSPIError);
+	}
 }
 
 [[nodiscard]] std::array<SensorData_t, 3> get_acc() {

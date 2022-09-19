@@ -200,7 +200,7 @@ public:
 	 * @retval 0 if ok, an error code otherwise.
 	 */
 	uint8_t IO_Write(uint8_t *pBuffer, uint8_t RegisterAddr,
-			uint16_t nBytesToWrite) {
+			[[maybe_unused]]uint16_t nBytesToWrite) {
 		if (&hspi1!=NULL) {
 			HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
 
