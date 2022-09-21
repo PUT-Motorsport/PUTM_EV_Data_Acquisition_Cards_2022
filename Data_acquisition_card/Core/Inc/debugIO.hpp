@@ -5,14 +5,15 @@
 
 enum class State : uint8_t {
     OK = 1,
-    CANMissedMsgWarning,
-	BadSensorRead,
-	AssertionFailed,
-	IOSPIError,
-	HALError,
-	HALAssertionFailed,
-	BadInitSeq,
-	CANError,
+    CANMissedMsgWarning,	//can message not sent
+	BadSensorRead,			//sensor read failure
+	AssertionFailed,		//RUNTIME_ASSERT failed
+	IOSPIError,				//SPI communications failed
+	HALError,				//HAL routine called Error_Handler()
+	HALAssertionFailed,		//HAL's internal assert_params failed
+	InitFali,				//some part of the initialization routines failed
+	BadInitSeq,				//attempted an operation without required initializations
+	CANError,				//CAN bus communications failed
 };
 
 namespace {
@@ -65,6 +66,11 @@ inline void setState(State state) {
 } //namespace Device
 
 __attribute__((noreturn)) inline void unrecoverableError(State errorType) {
+	/*
+	 * This function is meant to be called when:
+	 * 1. A failure encountered so serious that it makes no sense to continue
+	 * 2. A failure encountered should be eliminated in debug, so the call stack is preserved
+	 * */
 	Device::setState(errorType);
 
 	__disable_irq();

@@ -28,6 +28,7 @@
 #include "debugIO.hpp"
 #include "main.h"
 #include "imu_sensor.hpp"
+#include "imu_sensor_compatibility_layer.h"	//function prototypes required by the imu
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -125,7 +126,17 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc2, (uint32_t *) adc2_buffer, ADC_BUFFER_SIZE);
 
   Canbus::initialize(&hcan1);
-  //IMU::initialize();
+
+  //Initialize the IMU
+  stmdev_ctx_t sensor_instance;
+
+  sensor_instance.write_reg = &spi_write;
+  sensor_instance.read_reg = &spi_read;
+  sensor_instance.mdelay = &HAL_Delay;
+  sensor_instance.handle = nullptr;	//handle is optional and won't be used
+
+  bool res = IMU::initialize(&sensor_instance);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -139,11 +150,11 @@ int main(void)
 		  send_rtd_signal_flag = false;
 	  }
 
-	  if (lastFramesSentTime + FRAME_TO_FRAME_TIME > HAL_GetTick()) {
+	  if (lastFramesSentTime + FRAME_TO_FRAME_TIME < HAL_GetTick()) {
 
 		  Canbus::send_main_frame(reinterpret_cast<volatile ADC1_Data *>(adc1_buffer), reinterpret_cast<volatile ADC2_Data *>(adc2_buffer)); //todo: is it strict aliasing rule violation?
-		  //auto [acc_x, acc_y, acc_z] = IMU::get_acc();
-		  //auto [gyro_x, gyro_y, gyro_z] = IMU::get_gyro();
+		  auto [acc_x, acc_y, acc_z] = IMU::get_acc_data();
+		  auto [gyro_x, gyro_y, gyro_z] = IMU::get_gyro_data();
 		  //Canbus::send_acc_frame(acc_x, acc_y, acc_z);
 		  //Canbus::send_gyroscope_frame(acc_x, acc_y, acc_z);
 
