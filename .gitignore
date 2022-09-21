@@ -27,9 +27,7 @@ fp-info-cache
 
 # For C++ STM32 project
 **/Debug
-**/Drivers
 **/Release
-**/Startup
 
 # Prerequisites
 *.d

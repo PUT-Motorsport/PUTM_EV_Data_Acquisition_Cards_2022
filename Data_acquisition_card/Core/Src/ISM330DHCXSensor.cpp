@@ -10,6 +10,7 @@ extern SPI_HandleTypeDef hspi1;
  *  @param spi_speed the SPI speed
  */
 ISM330DHCXSensor::ISM330DHCXSensor() {
+	return;
 	HAL_SPI_Init(&hspi1);
 	reg_ctx.write_reg = ISM330DHCX_io_write;
 	reg_ctx.read_reg = ISM330DHCX_io_read;
