@@ -135,7 +135,7 @@ int main(void)
   sensor_instance.mdelay = &HAL_Delay;
   sensor_instance.handle = nullptr;	//handle is optional and won't be used
 
-  bool res = IMU::initialize(&sensor_instance);
+  IMU::initialize(&sensor_instance);
 
   /* USER CODE END 2 */
 
@@ -155,16 +155,8 @@ int main(void)
 		  Canbus::send_main_frame(reinterpret_cast<volatile ADC1_Data *>(adc1_buffer), reinterpret_cast<volatile ADC2_Data *>(adc2_buffer)); //todo: is it strict aliasing rule violation?
 		  auto [acc_x, acc_y, acc_z] = IMU::get_acc_data();
 		  auto [gyro_x, gyro_y, gyro_z] = IMU::get_gyro_data();
-		  //Canbus::send_acc_frame(acc_x, acc_y, acc_z);
-		  //Canbus::send_gyroscope_frame(acc_x, acc_y, acc_z);
-
-		  //assertions to ensure that the narrowing conversions make sense
-//		  RUNTIME_ASSERT(acc_x < std::numeric_limits<int16_t>::max());
-//		  RUNTIME_ASSERT(acc_y < std::numeric_limits<int16_t>::max());
-//		  RUNTIME_ASSERT(acc_z < std::numeric_limits<int16_t>::max());
-//		  RUNTIME_ASSERT(gyro_x < std::numeric_limits<int16_t>::max());
-//		  RUNTIME_ASSERT(gyro_y < std::numeric_limits<int16_t>::max());
-//		  RUNTIME_ASSERT(gyro_z < std::numeric_limits<int16_t>::max());
+		  Canbus::send_acc_frame(acc_x, acc_y, acc_z);
+		  Canbus::send_gyroscope_frame(gyro_x, gyro_y, gyro_z);
 		  lastFramesSentTime = HAL_GetTick();
 	  }
     /* USER CODE END WHILE */

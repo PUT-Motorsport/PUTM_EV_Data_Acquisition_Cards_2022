@@ -23,21 +23,27 @@ extern "C" {
 
 extern SPI_HandleTypeDef hspi1;	//defined in main.cpp
 
+#define SPI_MAX_POLLING_TIME 5 //ms
+
 int32_t spi_write([[maybe_unused]] void * handle, uint8_t reg, const uint8_t *Buffp, uint16_t len) {
 
 	//todo: use the IT or DMA versions
-
+	int32_t result{};
 	//select the slave
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
 	//send the address
-	if (HAL_OK != HAL_SPI_Transmit(&hspi1, &reg, 1, HAL_MAX_DELAY))
-		return -1;
+	if (HAL_OK != HAL_SPI_Transmit(&hspi1, &reg, 1, SPI_MAX_POLLING_TIME)) {
+		spi_error();
+		result = -1;
+	}
 	//send the data
-	if (HAL_OK != HAL_SPI_Transmit(&hspi1, const_cast<uint8_t *>(Buffp), len, HAL_MAX_DELAY)) 	//fixme: debug version
-		return -1;
+	if (HAL_OK != HAL_SPI_Transmit(&hspi1, const_cast<uint8_t *>(Buffp), len, SPI_MAX_POLLING_TIME)) {
+		spi_error();
+		result = -1;
+	}
 	//deselect the slave
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
-	return 0;
+	return result;
 }
 
 
@@ -47,13 +53,13 @@ int32_t spi_read([[maybe_unused]] void * handle, uint8_t reg, uint8_t * BuffP, u
 
 	//send the address
 	reg |= 0x80;
-	bool result{};
-	if (HAL_OK != HAL_SPI_Transmit(&hspi1, &reg, 1, HAL_MAX_DELAY)) {
+	int32_t result{};
+	if (HAL_OK != HAL_SPI_Transmit(&hspi1, &reg, 1, SPI_MAX_POLLING_TIME)) {
 		spi_error();
 		result = -1;
 	}
 	//read the data
-	if (HAL_OK != HAL_SPI_Receive(&hspi1, BuffP, len, HAL_MAX_DELAY)) {
+	if (HAL_OK != HAL_SPI_Receive(&hspi1, BuffP, len, SPI_MAX_POLLING_TIME)) {
 		spi_error();
 		result = -1;
 	}

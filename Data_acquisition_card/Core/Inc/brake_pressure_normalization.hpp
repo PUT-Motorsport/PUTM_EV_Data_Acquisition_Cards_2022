@@ -14,7 +14,7 @@ namespace BrakePressure {
 	 * */
 	constexpr float ADC_TO_KPA = 8.19f;
 
-	return arg / ADC_TO_KPA;
+	return static_cast<uint16_t>(arg / ADC_TO_KPA);
 }
 
 

@@ -40,7 +40,7 @@ inline void setState(State state) {
     }
     state_ = state;
 
-    //display a 0-15 number using 4 available leds
+    //display a 0-15 number using 4 available LEDs
     uint8_t state_value{static_cast<uint8_t>(state_)};
 
     /*
@@ -68,7 +68,7 @@ inline void setState(State state) {
 __attribute__((noreturn)) inline void unrecoverableError(State errorType) {
 	/*
 	 * This function is meant to be called when:
-	 * 1. A failure encountered so serious that it makes no sense to continue
+	 * 1. A failure encountered is so serious that it makes no sense to continue
 	 * 2. A failure encountered should be eliminated in debug, so the call stack is preserved
 	 * */
 	Device::setState(errorType);
