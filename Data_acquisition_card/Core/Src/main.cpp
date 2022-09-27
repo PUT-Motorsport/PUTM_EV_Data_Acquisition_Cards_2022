@@ -145,6 +145,8 @@ int main(void)
   uint32_t lastFramesSentTime{};
   while (1)
   {
+	  IMU::updateSensorData();	//always poll the sensor when not busy
+
 	  if (send_rtd_signal_flag) {
 		  Canbus::send_rtd_frame();
 		  send_rtd_signal_flag = false;

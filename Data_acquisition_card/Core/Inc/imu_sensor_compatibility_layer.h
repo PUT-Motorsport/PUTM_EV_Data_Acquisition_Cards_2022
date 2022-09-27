@@ -23,7 +23,7 @@ extern "C" {
 
 extern SPI_HandleTypeDef hspi1;	//defined in main.cpp
 
-#define SPI_MAX_POLLING_TIME 5 //ms
+#define SPI_MAX_POLLING_TIME 3 //ms
 
 int32_t spi_write([[maybe_unused]] void * handle, uint8_t reg, const uint8_t *Buffp, uint16_t len) {
 

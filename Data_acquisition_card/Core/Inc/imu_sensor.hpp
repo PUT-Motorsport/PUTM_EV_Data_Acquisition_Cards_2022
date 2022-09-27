@@ -17,6 +17,8 @@ using IMUData_t = int16_t;
 bool initialize(stmdev_ctx_t * instance);
 bool reinitialize(uint32_t timeout);
 
+void updateSensorData();
+
 std::array<IMUData_t, 3> get_acc_data();
 std::array<IMUData_t, 3> get_gyro_data();
 

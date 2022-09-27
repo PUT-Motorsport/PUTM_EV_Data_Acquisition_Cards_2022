@@ -2,12 +2,13 @@
 
 #include "ISM330dhcx/ism330dhcx_reg.h"
 #include "debugIO.hpp"
+#include "average.hpp"
 
 namespace {
 stmdev_ctx_t * instance_;
 
-std::array<int16_t, 3> raw_acc_data{};
-std::array<int16_t, 3> raw_gyro_data{};
+std::array<Average<IMU::IMUData_t>, 3> acc_data_avg{};
+std::array<Average<IMU::IMUData_t>, 3> gyro_data_avg{};
 
 //sensor settings
 constexpr auto SENSOR_BOOT_TIME{20};
@@ -66,9 +67,7 @@ bool reinitialize(uint32_t timeout) {
 	return reinitSuccessful;
 }
 
-//returns the newest available data
-std::array<IMU::IMUData_t, 3> get_acc_data() {
-
+void updateSensorData() {
 	if (instance_ == nullptr) {
 		unrecoverableError(State::BadInitSeq);
 	}
@@ -76,25 +75,44 @@ std::array<IMU::IMUData_t, 3> get_acc_data() {
 	uint8_t reg;
 	ism330dhcx_xl_flag_data_ready_get(instance_, &reg);
 
+	IMUData_t rawData[3]{};
+
 	if (reg) {
-		ism330dhcx_acceleration_raw_get(instance_, raw_acc_data.data());
+		ism330dhcx_acceleration_raw_get(instance_, rawData);
 	}
-	return raw_acc_data;
+	acc_data_avg[0].addSample(rawData[0]);
+	acc_data_avg[1].addSample(rawData[1]);
+	acc_data_avg[2].addSample(rawData[2]);
+
+	ism330dhcx_gy_flag_data_ready_get(instance_, &reg);
+
+	if (reg) {
+		ism330dhcx_angular_rate_raw_get(instance_, rawData);
+	}
+	gyro_data_avg[0].addSample(rawData[0]);
+	gyro_data_avg[1].addSample(rawData[1]);
+	gyro_data_avg[2].addSample(rawData[2]);
+}
+
+//returns the newest available data
+std::array<IMU::IMUData_t, 3> get_acc_data() {
+
+	std::array<IMUData_t, 3> imuAccData;
+	imuAccData[0] = acc_data_avg[0];
+	imuAccData[1] = acc_data_avg[1];
+	imuAccData[2] = acc_data_avg[2];
+
+	return imuAccData;
 }
 
 std::array<IMU::IMUData_t, 3> get_gyro_data() {
 
-	if (instance_ == nullptr) {
-		unrecoverableError(State::BadInitSeq);
-	}
+	std::array<IMUData_t, 3> imuGyroData;
+	imuGyroData[0] = gyro_data_avg[0];
+	imuGyroData[1] = gyro_data_avg[1];
+	imuGyroData[2] = gyro_data_avg[2];
 
-	uint8_t reg;
-	ism330dhcx_gy_flag_data_ready_get(instance_, &reg);
-
-	if (reg) {
-		ism330dhcx_angular_rate_raw_get(instance_, raw_gyro_data.data());
-	}
-	return raw_gyro_data;
+	return imuGyroData;
 }
 
 }	//namespace IMU
