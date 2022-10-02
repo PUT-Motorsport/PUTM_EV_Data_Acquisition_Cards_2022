@@ -41,4 +41,39 @@ $$
 t = \frac{26800 * 3 channels}{32 * 10^6 Hz} = 2.52 * 10^{-3} s = 2.52 ms
 $$
 
-*Timer synchronization to avoid unnecessary measurements?*  
+# 1D Kalman filter design for the IMU data
+
+$$
+\vec{x}(t + 1) = F(t + 1; t) * \vec{x}(t) + G * \vec{u} + w(t)
+$$
+$$
+\vec{z} = H * \vec{x}(t)
+$$
+
+$$
+\vec{x} = \begin{bmatrix} a_x \\ a_y \\ a_z \end{bmatrix}
+$$
+
+$$
+F = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \space\space\space H = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \space\space\space G = [1] \space u = [0]
+$$
+
+$$
+P(t + 1) = F(t)P(t) F(t)^T + Q(t)
+$$
+
+Since there is no way to calculate the change in acceleration, w(t) is estimated to gaussian N(0, $\sigma$) as process noise.
+
+$$
+Q(t) = \begin{bmatrix} \sigma_x \space 0 \space 0 \\ 0 \space \sigma_y \space 0 \\ 0 \space 0 \space \sigma_z\end{bmatrix}
+$$
+
+$$
+\sigma_{process} = \sigma_x = \sigma_y = \sigma_z
+$$
+
+$$
+R = \begin{bmatrix} ? ? ? \\ ? ? ? \\ ? ? ? \end{bmatrix}
+$$
+
+R to be selected.
