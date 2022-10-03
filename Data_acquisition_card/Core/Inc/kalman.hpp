@@ -9,7 +9,7 @@ public:
     explicit constexpr KalmanFilter1D(DataType initialGuess, DataType initialVariance) : 
         F{}, H{}, R{}, Q{}, x_nn{initialGuess}, variance_nn{initialVariance} {}
 
-    [[nodiscard]] DataType iterate(DataType measurement) {
+    DataType iterate(DataType measurement) {
         //prediction phase
         DataType const x_predicted = F * x_nn;
         DataType const variance_predicted = variance_nn + Q;
