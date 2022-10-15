@@ -1,3 +1,5 @@
+
+
 #include "can_functions.hpp"
 
 #include <compare>
@@ -43,11 +45,11 @@ void Canbus::send_main_frame(ADC1_Data volatile const * const adc1_data, ADC2_Da
 	auto safety = get_safety_state();
 
 	PUTM_CAN::AQ_main main_frame{};
-	main_frame.brake_pressure_front = BrakePressure::normalize_to_kpa(adc1_data->BrakePressure1);	//fixme: but is it really the front brake pressure
-	main_frame.brake_pressure_back =  BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2);
+	main_frame.brake_pressure_front = /*BrakePressure::normalize_to_kpa*/(adc1_data->BrakePressure1);	//fixme: but is it really the front brake pressure
+	main_frame.brake_pressure_back =  /*BrakePressure::normalize_to_kpa*/(adc1_data->BrakePressure2);
 
-	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure1) < 4096);		//these values must fit into 12 wide bit fields
-	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2) < 4096);
+	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure1) < 4096u);		//these values must fit into 12 wide bit fields
+	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2) < 4096u);
 
 	main_frame.suspension_right = adc1_data->SuspensionR;
 	main_frame.suspension_left = adc2_data->SuspensionL;

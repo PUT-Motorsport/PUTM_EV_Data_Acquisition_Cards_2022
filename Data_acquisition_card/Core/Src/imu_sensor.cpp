@@ -4,6 +4,7 @@
 #include "ISM330dhcx/ism330dhcx_reg.h"
 #include "debugIO.hpp"
 #include "kalman.hpp"
+#include "usb_communication.hpp"
 
 namespace {
 stmdev_ctx_t * instance_;
@@ -103,9 +104,13 @@ void updateSensorData() {
 	if (reg) {
 		ism330dhcx_acceleration_raw_get(instance_, rawData);
 
+		USB_DebugData::set_raw_acc(rawData[0], rawData[1], rawData[2]);
+
 		acc_data_kalman[0].iterate(ism330dhcx_from_fs2g_to_mg(rawData[0]));
 		acc_data_kalman[1].iterate(ism330dhcx_from_fs2g_to_mg(rawData[1]));
 		acc_data_kalman[2].iterate(ism330dhcx_from_fs2g_to_mg(rawData[2]));
+
+
 	}
 
 	ism330dhcx_gy_flag_data_ready_get(instance_, &reg);

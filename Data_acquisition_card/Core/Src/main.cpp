@@ -30,6 +30,7 @@
 #include "main.h"
 #include "imu_sensor.hpp"
 #include "imu_sensor_compatibility_layer.h"	//function prototypes required by the imu
+#include "usb_communication.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -137,6 +138,8 @@ int main(void)
   sensor_instance.mdelay = &HAL_Delay;
   sensor_instance.handle = nullptr;	//handle is optional and won't be used
 
+  HAL_Delay(3000);	//in case of a loss of power, the IMU needs ~3 s to be able to connect properly
+
   IMU::initialize(&sensor_instance);
 
   /* USER CODE END 2 */
@@ -148,6 +151,10 @@ int main(void)
   while (1)
   {
 	  IMU::updateSensorData();	//always poll the sensor when not busy
+
+	  USB_DebugData::set_potentiometers(adc1_buffer[2], adc2_buffer[2]);
+
+	  USB_DebugData::send();
 
 	  if (send_rtd_signal_flag) {
 		  Canbus::send_rtd_frame();
@@ -174,7 +181,6 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-/*The extern "C" declaration solves a linker issue*/
 extern "C" void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -279,7 +285,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.DMAContinuousRequests = ENABLE;
-  hadc1.Init.Overrun = ADC_OVR_DATA_OVERWRITTEN;
+  hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   hadc1.Init.OversamplingMode = ENABLE;
   hadc1.Init.Oversampling.Ratio = ADC_OVERSAMPLING_RATIO_256;
   hadc1.Init.Oversampling.RightBitShift = ADC_RIGHTBITSHIFT_8;
