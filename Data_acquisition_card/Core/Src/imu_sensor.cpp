@@ -17,12 +17,12 @@ constexpr auto Kalman_H = 1;
 constexpr auto Kalman_Q = 1;	//fixme: to be fine-tuned
 constexpr auto Kalman_R = 20;
 
-std::array<KalmanFilter1D<float>, 3> acc_data_kalman{KalmanFilter1D<float>{initialGuess, initialVariance},
-													  KalmanFilter1D<float>{initialGuess, initialVariance},
-													  KalmanFilter1D<float>{initialGuess, initialVariance}};
-std::array<KalmanFilter1D<float>, 3> gyro_data_kalman{KalmanFilter1D<float>{initialGuess, initialVariance},
-													  KalmanFilter1D<float>{initialGuess, initialVariance},
-													  KalmanFilter1D<float>{initialGuess, initialVariance}};
+std::array<KalmanFilter1D<IMU::IMUData_t>, 3> acc_data_kalman{KalmanFilter1D<IMU::IMUData_t>{initialGuess, initialVariance},
+													  KalmanFilter1D<IMU::IMUData_t>{initialGuess, initialVariance},
+													  KalmanFilter1D<IMU::IMUData_t>{initialGuess, initialVariance}};
+std::array<KalmanFilter1D<IMU::IMUData_t>, 3> gyro_data_kalman{KalmanFilter1D<IMU::IMUData_t>{initialGuess, initialVariance},
+													  KalmanFilter1D<IMU::IMUData_t>{initialGuess, initialVariance},
+													  KalmanFilter1D<IMU::IMUData_t>{initialGuess, initialVariance}};
 
 //sensor settings
 constexpr auto SENSOR_BOOT_TIME{20};
@@ -64,7 +64,7 @@ bool initialize(stmdev_ctx_t * instance) {
 	ism330dhcx_xl_hp_path_on_out_set(instance_, ISM330DHCX_LP_ODR_DIV_100);
 	ism330dhcx_xl_filter_lp2_set(instance_, PROPERTY_ENABLE);
 
-	auto predicate = [](KalmanFilter1D<float>& filter){
+	auto predicate = [](KalmanFilter1D<IMUData_t>& filter){
 		filter.F = Kalman_F;
 		filter.H = Kalman_H;
 		filter.Q = Kalman_Q;
@@ -106,9 +106,9 @@ void updateSensorData() {
 
 		USB_DebugData::set_raw_acc(rawData[0], rawData[1], rawData[2]);
 
-		acc_data_kalman[0].iterate(ism330dhcx_from_fs2g_to_mg(rawData[0]));
-		acc_data_kalman[1].iterate(ism330dhcx_from_fs2g_to_mg(rawData[1]));
-		acc_data_kalman[2].iterate(ism330dhcx_from_fs2g_to_mg(rawData[2]));
+		acc_data_kalman[0].iterate(rawData[0]);
+		acc_data_kalman[1].iterate(rawData[1]);
+		acc_data_kalman[2].iterate(rawData[2]);
 
 
 	}
@@ -118,9 +118,9 @@ void updateSensorData() {
 	if (reg) {
 		ism330dhcx_angular_rate_raw_get(instance_, rawData);
 
-		gyro_data_kalman[0].iterate(ism330dhcx_from_fs2000dps_to_mdps(rawData[0]));
-		gyro_data_kalman[1].iterate(ism330dhcx_from_fs2000dps_to_mdps(rawData[1]));
-		gyro_data_kalman[2].iterate(ism330dhcx_from_fs2000dps_to_mdps(rawData[2]));
+		gyro_data_kalman[0].iterate(rawData[0]);
+		gyro_data_kalman[1].iterate(rawData[1]);
+		gyro_data_kalman[2].iterate(rawData[2]);
 	}
 
 }
@@ -129,7 +129,7 @@ void updateSensorData() {
 std::array<IMU::IMUData_t, 3> get_acc_data() {
 
 	std::array<IMUData_t, 3> imuAccData;
-	imuAccData[0] = acc_data_kalman[0].get();	//fixme: implicit casts
+	imuAccData[0] = acc_data_kalman[0].get();
 	imuAccData[1] = acc_data_kalman[1].get();
 	imuAccData[2] = acc_data_kalman[2].get();
 
