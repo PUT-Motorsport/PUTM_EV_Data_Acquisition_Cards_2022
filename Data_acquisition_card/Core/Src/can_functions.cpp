@@ -3,6 +3,7 @@
 #include "can_functions.hpp"
 
 #include <compare>
+#include <limits>
 
 #include "PUTM_EV_CAN_LIBRARY/lib/can_interface.hpp"
 #include "safety_gpio.hpp"
@@ -45,11 +46,28 @@ void Canbus::send_main_frame(ADC1_Data volatile const * const adc1_data, ADC2_Da
 	auto safety = get_safety_state();
 
 	PUTM_CAN::AQ_main main_frame{};
-	main_frame.brake_pressure_front = BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2);	//fixme: brake pressure 1 not operational
-	main_frame.brake_pressure_back =  BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2);
 
-	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure1) < 4096u);		//these values must fit into 12 wide bit fields
-	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2) < 4096u);
+	using BrakePressure_t = decltype(adc1_data->BrakePressure2);
+
+	static BrakePressure_t lowest_brake_pressure = std::numeric_limits<BrakePressure_t>::max();
+
+	BrakePressure_t biased_brake_pressure{adc1_data->BrakePressure2};
+
+	//fixme: brake pressure 1 not operational
+
+	if (biased_brake_pressure > lowest_brake_pressure) {
+		biased_brake_pressure -= lowest_brake_pressure;
+	}
+	else {
+		lowest_brake_pressure = biased_brake_pressure;
+		biased_brake_pressure = 0;
+	}
+
+	main_frame.brake_pressure_front = BrakePressure::normalize_to_kpa(biased_brake_pressure);
+	main_frame.brake_pressure_back =  BrakePressure::normalize_to_kpa(biased_brake_pressure);
+
+	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(biased_brake_pressure) < 4096u);		//these values must fit into 12 wide bit fields
+	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(biased_brake_pressure) < 4096u);
 
 	main_frame.suspension_right = adc1_data->SuspensionR;
 	main_frame.suspension_left = adc2_data->SuspensionL;
