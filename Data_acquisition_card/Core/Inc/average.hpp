@@ -8,7 +8,7 @@ constexpr std::size_t MAX_SAMPLES{10};
 
 template<typename T>
 requires (std::is_arithmetic<T>::value)
-struct Average {
+struct [[deprecated]] Average {
 public:
 	auto addSample(T sample) {
 		if (samplesCount < MAX_SAMPLES) {

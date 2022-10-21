@@ -1,5 +1,7 @@
 #include "can_functions.hpp"
 
+#include <compare>
+
 #include "PUTM_EV_CAN_LIBRARY/lib/can_interface.hpp"
 #include "safety_gpio.hpp"
 #include "debugIO.hpp"
@@ -59,9 +61,9 @@ void Canbus::send_main_frame(ADC1_Data volatile const * const adc1_data, ADC2_Da
 	main_frame.right_kill = safety[static_cast<std::size_t>(Safety::Right_kill)];
 
 	//todo: braking?
-	auto average_braking_pressure = (adc1_data->BrakePressure1 + adc1_data->BrakePressure2) / 2.0;
+	auto average_braking_pressure = (adc1_data->BrakePressure1 + adc1_data->BrakePressure2) / 2;
 
-	main_frame.braking = (average_braking_pressure > BRAKING_PRESSURE_THRESHOLD);
+	main_frame.braking = std::cmp_greater(average_braking_pressure, BRAKING_PRESSURE_THRESHOLD);
 
 	PUTM_CAN::Can_tx_message<typeof(main_frame)> can_tx_frame{main_frame, PUTM_CAN::can_tx_header_AQ_MAIN};
 
