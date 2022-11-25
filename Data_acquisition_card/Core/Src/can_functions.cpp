@@ -79,7 +79,6 @@ void Canbus::send_main_frame(ADC1_Data volatile const * const adc1_data, ADC2_Da
 	main_frame.left_kill = safety[static_cast<std::size_t>(Safety::Left_kill)];
 	main_frame.overtravel = safety[static_cast<std::size_t>(Safety::Overtravel)];
 	main_frame.right_kill = safety[static_cast<std::size_t>(Safety::Right_kill)];
-
 	main_frame.braking = std::cmp_greater(adc1_data->BrakePressure2, BRAKING_PRESSURE_THRESHOLD);
 
 	PUTM_CAN::Can_tx_message<typeof(main_frame)> can_tx_frame{main_frame, PUTM_CAN::can_tx_header_AQ_MAIN};

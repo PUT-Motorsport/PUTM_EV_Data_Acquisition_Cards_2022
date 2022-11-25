@@ -109,8 +109,6 @@ void updateSensorData() {
 		acc_data_kalman[0].iterate(rawData[0]);
 		acc_data_kalman[1].iterate(rawData[1]);
 		acc_data_kalman[2].iterate(rawData[2]);
-
-
 	}
 
 	ism330dhcx_gy_flag_data_ready_get(instance_, &reg);
