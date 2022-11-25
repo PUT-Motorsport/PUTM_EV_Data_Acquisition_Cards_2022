@@ -3,7 +3,7 @@
 #include <type_traits>
 
 template<typename DataType>
-requires(std::is_floating_point<DataType>::value)
+requires(std::is_arithmetic<DataType>::value)
 class KalmanFilter1D {
 public:
     explicit constexpr KalmanFilter1D(DataType initialGuess, DataType initialVariance) : 

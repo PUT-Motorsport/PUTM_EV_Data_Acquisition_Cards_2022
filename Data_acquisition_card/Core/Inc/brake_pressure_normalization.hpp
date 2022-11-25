@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <type_traits>
 #include "debugIO.hpp"
 
 namespace BrakePressure {
@@ -13,6 +14,8 @@ namespace BrakePressure {
 	 * TODO: well, dangerous assumptions
 	 * */
 	constexpr float ADC_TO_KPA = 8.19f;
+
+	RUNTIME_ASSERT((arg / ADC_TO_KPA) > 0.0);
 
 	return static_cast<uint16_t>(arg / ADC_TO_KPA);
 }

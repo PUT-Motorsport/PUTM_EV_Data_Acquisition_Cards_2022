@@ -1,6 +1,9 @@
+
+
 #include "can_functions.hpp"
 
 #include <compare>
+#include <limits>
 
 #include "PUTM_EV_CAN_LIBRARY/lib/can_interface.hpp"
 #include "safety_gpio.hpp"
@@ -43,11 +46,28 @@ void Canbus::send_main_frame(ADC1_Data volatile const * const adc1_data, ADC2_Da
 	auto safety = get_safety_state();
 
 	PUTM_CAN::AQ_main main_frame{};
-	main_frame.brake_pressure_front = BrakePressure::normalize_to_kpa(adc1_data->BrakePressure1);	//fixme: but is it really the front brake pressure
-	main_frame.brake_pressure_back =  BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2);
 
-	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure1) < 4096);		//these values must fit into 12 wide bit fields
-	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(adc1_data->BrakePressure2) < 4096);
+	using BrakePressure_t = decltype(adc1_data->BrakePressure2);
+
+	static BrakePressure_t lowest_brake_pressure = std::numeric_limits<BrakePressure_t>::max();
+
+	BrakePressure_t biased_brake_pressure{adc1_data->BrakePressure2};
+
+	//fixme: brake pressure 1 not operational
+
+	if (biased_brake_pressure > lowest_brake_pressure) {
+		biased_brake_pressure -= lowest_brake_pressure;
+	}
+	else {
+		lowest_brake_pressure = biased_brake_pressure;
+		biased_brake_pressure = 0;
+	}
+
+	main_frame.brake_pressure_front = BrakePressure::normalize_to_kpa(biased_brake_pressure);
+	main_frame.brake_pressure_back =  BrakePressure::normalize_to_kpa(biased_brake_pressure);
+
+	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(biased_brake_pressure) < 4096u);		//these values must fit into 12 wide bit fields
+	RUNTIME_ASSERT(BrakePressure::normalize_to_kpa(biased_brake_pressure) < 4096u);
 
 	main_frame.suspension_right = adc1_data->SuspensionR;
 	main_frame.suspension_left = adc2_data->SuspensionL;
@@ -59,11 +79,7 @@ void Canbus::send_main_frame(ADC1_Data volatile const * const adc1_data, ADC2_Da
 	main_frame.left_kill = safety[static_cast<std::size_t>(Safety::Left_kill)];
 	main_frame.overtravel = safety[static_cast<std::size_t>(Safety::Overtravel)];
 	main_frame.right_kill = safety[static_cast<std::size_t>(Safety::Right_kill)];
-
-	//todo: braking?
-	auto average_braking_pressure = (adc1_data->BrakePressure1 + adc1_data->BrakePressure2) / 2;
-
-	main_frame.braking = std::cmp_greater(average_braking_pressure, BRAKING_PRESSURE_THRESHOLD);
+	main_frame.braking = std::cmp_greater(adc1_data->BrakePressure2, BRAKING_PRESSURE_THRESHOLD);
 
 	PUTM_CAN::Can_tx_message<typeof(main_frame)> can_tx_frame{main_frame, PUTM_CAN::can_tx_header_AQ_MAIN};
 
